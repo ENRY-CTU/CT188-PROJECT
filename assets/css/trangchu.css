@@ -153,3 +153,13 @@
     transform: rotate(90deg);
   }
 }
+
+.banner-img {
+  background-image: url(../images/banner1.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  aspect-ratio: 1524/720;
+  margin-right: 10px;
+}
