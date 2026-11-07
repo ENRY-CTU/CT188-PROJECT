@@ -221,13 +221,36 @@ button, select, input { font-family: inherit; }
 .mobile-auth { display: none; }
 
 .banner-img {
-  background-image: url(../images/banner1.png);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  position: relative;
   width: 100%;
-  aspect-ratio: 1524/720;
-  margin-right: 10px;
+}
+.banner-img img {
+  display: block;
+  width: 100%;
+}
+.banner-img .banner2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: chuyenbanner 20s ease-in-out infinite;
+}
+@keyframes chuyenbanner {
+  0%, 40% {
+    opacity: 0;
+  }
+  50%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.title-danhmuc {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .social-contact{
   display: flex;
