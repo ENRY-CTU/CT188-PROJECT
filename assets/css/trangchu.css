@@ -252,25 +252,6 @@ button, select, input { font-family: inherit; }
   align-items: center;
   justify-content: center;
 }
-.social-contact{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-.social-contact h2 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 200;
-}
-.social-contact a {
-  text-decoration: none;
-  color: #111111;
-}
-.social-contact a:hover span{
-  text-decoration: underline;
-}
 .danhmucsp {
   max-width: 1200px;
   margin: 60px auto;
