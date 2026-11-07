@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Danh sách sản phẩm thời trang nữ: áo, váy, đầm, quần, áo khoác, phụ kiện.">
+    <title>Sản Phẩm | Maison Mode</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/sanpham.css">
+</head>
+<body>
+    
+    <!-- ===================== HEADER ===================== -->
+    <header class="main-header">
+        <div class="header-container">
+
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="trangchu.html" title="Maison Mode - Trang chủ"><img src="/assets/images/logo.png" alt="Maison Mode - Thời trang nữ"></a>
+            </div>
+
+            <!-- Nút menu cho màn hình nhỏ -->
+            <input id="menu-toggle" class="menu-checkbox" type="checkbox">
+            <label class="menu-btn" for="menu-toggle" title="Mở menu">
+                <i class="fa-solid fa-bars icon-open"></i>
+                <i class="fa-solid fa-xmark icon-close"></i>
+            </label>
+
+            <!-- Menu điều hướng -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="sanpham.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="giohang.html">Giỏ Hàng</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
+                </ul>
+            </nav>
+
+            <!-- Tìm kiếm, giỏ hàng, đăng nhập -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <form id="search-form" class="search-form" action="sanpham.html" method="GET">
+                        <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
+                        <button class="btn-search-submit" type="submit" title="Tìm">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+
+                <div class="user-buttons">
+                    <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
+                    <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="product-page">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <a href="trangchu.html"><i class="fa-solid fa-house"></i> Trang chủ</a>
+            <i class="fa-solid fa-angle-right"></i>
+            <span>Sản phẩm</span>
+        </nav>
+
+        <div class="product-container">
+            <section class="product-section">
+                <h1 class="section-title">Bộ Sưu Tập</h1>
+
+                <!-- Bộ lọc -->
+                <aside class="product-menu">
+                    <h3>Danh mục</h3>
+                    <ul class="list-menu" id="category-menu">
+                        <li class="item-menu"><a class="link active" href="#" data-category="all"><i class="fa-solid fa-border-all"></i> Tất cả</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="new"><i class="fa-solid fa-star"></i> Hàng mới về</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="hot"><i class="fa-solid fa-fire"></i> Bán chạy</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="sale"><i class="fa-solid fa-tags"></i> Giảm giá</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="ao"><i class="fa-solid fa-shirt"></i> Áo</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="vay"><i class="fa-solid fa-person-dress"></i> Váy</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="dam"><i class="fa-solid fa-gem"></i> Đầm</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="quan"><i class="fa-solid fa-ruler-vertical"></i> Quần</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="khoac"><i class="fa-solid fa-vest"></i> Áo khoác</a></li>
+                        <li class="item-menu"><a class="link" href="#" data-category="phukien"><i class="fa-solid fa-bag-shopping"></i> Phụ kiện</a></li>
+                    </ul>
+
+                    <div class="filter-price">
+                        <h3>Mức giá</h3>
+                        <label class="radio-row"><input type="radio" name="price" value="all" checked> Tất cả mức giá</label>
+                        <label class="radio-row"><input type="radio" name="price" value="0-500000"> Dưới 500.000đ</label>
+                        <label class="radio-row"><input type="radio" name="price" value="500000-1000000"> 500.000đ – 1.000.000đ</label>
+                        <label class="radio-row"><input type="radio" name="price" value="1000000-2000000"> 1.000.000đ – 2.000.000đ</label>
+                        <label class="radio-row"><input type="radio" name="price" value="2000000-99999999"> Trên 2.000.000đ</label>
+                    </div>
+                </aside>
+
+                <!-- Khu vực danh sách -->
+                <div class="product-content">
+                    <div class="toolbar">
+                        <p class="result-count" id="result-count" aria-live="polite"></p>
+                        <div class="sort-box">
+                            <label for="sort-select"><i class="fa-solid fa-arrow-down-wide-short"></i> Sắp xếp:</label>
+                            <select id="sort-select">
+                                <option value="default">Mặc định</option>
+                                <option value="price-asc">Giá: thấp → cao</option>
+                                <option value="price-desc">Giá: cao → thấp</option>
+                                <option value="name-asc">Tên: A → Z</option>
+                                <option value="discount">Giảm giá nhiều nhất</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Card sản phẩm được tạo bằng JavaScript -->
+                    <div class="product-grid" id="product-grid"></div>
+
+                    <!-- Phân trang -->
+                    <nav class="pagination" id="pagination" aria-label="Phân trang"></nav>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="trangchu.html" class="footer-logo"><img src="/assets/images/logo.png" alt="Maison Mode"></a>
+                <p class="footer-desc">Thời trang nữ thanh lịch, tinh tế dành cho phụ nữ hiện đại – từ công sở đến dạo phố.</p>
+                <ul class="footer-contact">
+                    <li><i class="fa-solid fa-location-dot"></i> 123 Đường Cần Thơ, Q. Ninh Kiều, TP. Cần Thơ</li>
+                    <li><i class="fa-solid fa-phone"></i> 0901 234 567</li>
+                    <li><i class="fa-solid fa-envelope"></i> maisonmode@gmail.com</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3 class="footer-title">Liên Kết Nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="trangchu.html">Trang Chủ</a></li>
+                    <li><a href="gioithieu.html">Giới Thiệu</a></li>
+                    <li><a href="sanpham.html">Sản Phẩm</a></li>
+                    <li><a href="giohang.html">Giỏ Hàng</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3 class="footer-title">Hỗ Trợ Khách Hàng</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Hướng dẫn chọn size</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Bảo mật thông tin</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3 class="footer-title">Kết Nối Với Chúng Tôi</h3>
+                <p class="footer-desc">Đăng ký để nhận ưu đãi và bộ sưu tập mới nhất.</p>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input class="newsletter-input" type="email" placeholder="Nhập email của bạn..." required>
+                    <button class="btn-newsletter" type="submit" title="Đăng ký"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+                <div class="footer-socials">
+                    <a href="https://facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Website bán quần áo | Nhập môn lập trình Web - Nhóm 5</p>
+        </div>
+    </footer>
+
+    <!-- Nút về đầu trang -->
+    <a href="#" class="back-to-top" title="Về đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>
