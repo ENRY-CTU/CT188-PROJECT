@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <p>Please enter your imformations</p>
+                <h1>Welcome!</h1>
+            </div>
+
+            <form class="form-box">
+                <div class="input-group">
+                    <input type="email" id="email" class="input-field" placeholder=" " required>
+                    <label for="email" class="floating-label">Email address</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" class="input-field" placeholder=" " required>
+                    <label for="password" class="floating-label">Password</label>
+                    <div class="eye-icon">👁</div>
+                </div>
+
+                <div class="input-group checkbox-group">
+                    <div class="form-col remember-me">
+                        <input type="checkbox" id="remember-me-checkbox" class="checkbox-field">
+                        <label for="remember-me-checkbox">Remember me</label>
+                    </div>
+
+                    <div class="form-col">
+                        <a href="#" class="form-link">Forgot password?</a>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-btn form-btn--submit">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="form-divider">
+                <p>Or</p>
+            </div>
+
+            <div class="form-bottom">
+                <div class="form-socials">
+                    <button type="button" class="form-btn form-btn--social">
+                        <img src="assets/images/google.jpg" class="btn-icon" alt="Google">
+                    </button>
+
+                    <button type="button" class="form-btn form-btn--social">
+                        <img src="assets/images/facebook.jpg" class="btn-icon" alt="Facebook">
+                    </button>
+                </div>
+
+                <p>Don't have an account?
+                    <a href="#" class="form-link">Sign up</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script src="assets/login.js</script>
+
+</html>

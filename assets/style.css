@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8ecf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header p {
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.form-header h1 {
+    font-size: 28px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: blue;
+}
+
+.floating-label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: gray;
+    pointer-events: none;
+}
+
+.input-field:focus ~ .floating-label,
+.input-field:not(:placeholder-shown) ~ .floating-label {
+    top: -8px;
+    font-size: 12px;
+    background-color: white;
+}
+
+.checkbox-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.form-link {
+    color: blue;
+    text-decoration: none;
+}
+
+.form-btn--submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #5269d9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-divider {
+    text-align: center;
+    margin: 20px 0;
+    color: gray;
+}
+
+.form-socials {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-btn--social {
+    flex: 1;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.form-bottom {
+    text-align: center;
+    font-size: 13px;
+}
+
+.eye-icon
+{
+    position: absolute;
+    right: 15px;
+    display: flex;
+    top: 50%;
+    transform: translateY(-50%);
+}
