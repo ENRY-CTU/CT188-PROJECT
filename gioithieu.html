@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu | Maison Mode</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <!-- CSS Header và Footer -->
+    <link rel="stylesheet" href="/assets/css/sanpham.css">
+    <!-- CSS Riêng cho trang giới thiệu -->
+    <link rel="stylesheet" href="/assets/css/gioithieu.css">
+</head>
+<body>
+    
+    <!-- ===================== HEADER ===================== -->
+    <header class="main-header">
+        <div class="header-container">
+
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="trangchu.html" title="Maison Mode - Trang chủ"><img src="/assets/images/logo.png" alt="Maison Mode - Thời trang nữ"></a>
+            </div>
+
+            <!-- Nút menu cho màn hình nhỏ -->
+            <input id="menu-toggle" class="menu-checkbox" type="checkbox">
+            <label class="menu-btn" for="menu-toggle" title="Mở menu">
+                <i class="fa-solid fa-bars icon-open"></i>
+                <i class="fa-solid fa-xmark icon-close"></i>
+            </label>
+
+            <!-- Menu điều hướng -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="sanpham.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="giohang.html">Giỏ Hàng</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
+                </ul>
+            </nav>
+
+            <!-- Tìm kiếm, giỏ hàng, đăng nhập -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <form id="search-form" class="search-form" action="sanpham.html" method="GET">
+                        <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
+                        <button class="btn-search-submit" type="submit" title="Tìm">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+
+                <div class="user-buttons">
+                    <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
+                    <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="gt-main">
+    <section class="banner-img">
+        <img class="anh1gt" src="assets/images/anh1gt.jpg" alt="agt1">
+    </section>
+    <section class="gioithieu">
+        <h1> Maison Mode - Thời trang tôn vinh phái đẹp</h1>
+        <h2 class="tieude2"> Maison Mode – Nét đẹp vượt thời gian </h2>
+        <div class="noidung">
+            <p>Được thành lập vào năm 2018, Maison Mode là một thương hiệu thời trang nữ trẻ, mang trong mình tinh thần sáng tạo và khát vọng khẳng định dấu ấn riêng trên thị trường thời trang.</p>
+
+            <p>Lấy cảm hứng từ vẻ đẹp đa dạng của người phụ nữ, Maison Mode theo đuổi sự giao thoa giữa phong cách cổ điển và hơi thở hiện đại. Từ những thiết kế thanh lịch, mang nét đẹp vượt thời gian đến những trang phục trẻ trung, thời thượng, mỗi sản phẩm đều hướng đến việc tôn vinh vẻ đẹp, cá tính và phong cách riêng của phái đẹp.</p>
+
+            <p>Với Maison Mode, thời trang không chỉ là trang phục mà còn là cách mỗi người phụ nữ thể hiện bản thân, sự tự tin và dấu ấn cá nhân trong cuộc sống.</p>
+
+            <p><em>Maison Mode – Nơi phong cách gặp gỡ vẻ đẹp của riêng bạn.</em></p>
+        </div>
+    </section>
+    <section class="gioithieu">
+        <h2 class="tieude2"> Tầm nhìn và sứ mệnh </h2>
+        <div class="noidung">
+            <h2>Tầm nhìn:</h2>
+            <p>Trở thành thương hiệu thời trang sáng tạo và giàu cảm hứng, đồng hành cùng phụ nữ qua nhiều thế hệ. Chúng tôi hướng tới việc tôn vinh sự đa dạng trong phong cách của mọi lứa tuổi — nơi di sản truyền thống và nhịp thở hiện đại cùng song hành để tạo nên vẻ đẹp bền vững vượt qua thử thách của thời gian.</p>
+            <h2>Sứ mệnh:</h2>
+            <p>- Đột phá và Tôn vinh: Phá vỡ những giới hạn cũ để tôn vinh vẻ đẹp tự tin, hiện đại và khí chất riêng của người phụ nữ ngày nay.</p>
+            <p>- Gìn giữ và Truyền nối: Thổi hồn dấu ấn truyền thống cổ điển vào từng đường nét thời trang, giúp giữ lại chuẩn mực thanh lịch qua từng thế hệ.</p>
+            <p>- Đồng hành và Tự hào: Sáng tạo nên những trang phục không chỉ đẹp mắt mà còn chứa đựng giá trị cảm xúc, trở thành người bạn đồng hành tin cậy trên hành trình định hình phong cách của mọi phụ nữ.</p>
+        </div>
+    </section>
+    <section class="gt-haianh">
+        <img src="assets/images/anhgt2.jpg" alt="agt2">
+        <img src="assets/images/anhtg3.jpg" alt="agt3">
+    </section>
+    <section class="gioithieu">
+        <h2 class="tieude2"> Giá trị cốt lõi </h2>
+        <div class="noidung">
+            <h2>Chất lượng - Đa dạng trong lựa chọn</h2>
+            <p>Maison Mode hướng đến việc mang lại những sản phẩm thời trang với nhiều phân khúc khác nhau, từ bình dân đến cao cấp. Chúng tôi chú trọng chất liệu, kiểu dáng và sự chỉn chu trong từng thiết kế, nhằm đáp ứng nhu cầu mua sắm đa dạng của khách hàng.</p>
+            <h2>Phong cách – Giao thoa giữa truyền thống và hiện đại</h2>
+            <p>Maison Mode không ngừng sáng tạo bằng cách kết hợp những nét đẹp truyền thống với xu hướng thời trang hiện đại. Mỗi thiết kế đều hướng đến sự hài hòa, thanh lịch và đa dạng, phù hợp với nhiều độ tuổi, giúp người phụ nữ tự tin thể hiện phong cách riêng.</p>
+            <h2>Khách hàng – Đồng hành cùng mọi phái đẹp</h2>
+            <p>Maison Mode hướng đến phục vụ phụ nữ ở nhiều độ tuổi, nghề nghiệp và điều kiện kinh tế khác nhau. Chúng tôi mong muốn mọi khách hàng, dù ở bất kỳ phân khúc nào, đều có thể tìm thấy những sản phẩm phù hợp với nhu cầu, sở thích và khả năng chi tiêu của mình.</p>
+        </div>
+    </section>
+    <section class="banner-img">
+        <img class="anhgt4" src="assets/images/anhgt4.png" alt="agt4">
+    </section>
+    <section class="gioithieu">
+        <h2 class="tieude2"> Hành trình phát triển</h2>
+        <div class="noidung">
+            <h2>2018 – Khởi nguồn thương hiệu</h2>
+            <p>Maison Mode được thành lập với mong muốn mang đến những sản phẩm thời trang nữ đa dạng, kết hợp nét đẹp cổ điển và phong cách hiện đại. Đây là bước khởi đầu cho hành trình xây dựng một thương hiệu thời trang dành cho phái đẹp.</p>
+            <h2>2020 – Định hình phong cách riêng</h2>
+            <p>Maison Mode từng bước định hình phong cách thiết kế, chú trọng sự giao thoa giữa chất liệu truyền thống và xu hướng thời trang hiện đại. Các dòng sản phẩm ngày càng đa dạng, hướng đến nhiều độ tuổi và sở thích khác nhau.</p>
+            <h2>2022 – Mở rộng danh mục sản phẩm</h2>
+            <p>Thương hiệu phát triển thêm nhiều dòng trang phục từ thanh lịch, công sở đến trẻ trung, năng động. Đồng thời, Maison Mode chú trọng đa dạng hóa phân khúc giá để tiếp cận nhiều nhóm khách hàng hơn.</p>
+            <h2>2024 – Hoàn thiện hình ảnh thương hiệu</h2>
+            <p>Maison Mode tập trung xây dựng hình ảnh thương hiệu chuyên nghiệp, cải thiện trải nghiệm mua sắm và chú trọng hơn đến nhu cầu của khách hàng. Phong cách thời trang ngày càng được định hình rõ nét.</p>
+            <h2>2026 – Hướng đến tương lai</h2>
+            <p>Tiếp tục phát triển các dòng sản phẩm thời trang nữ, cập nhật xu hướng mới và mở rộng khả năng tiếp cận khách hàng thông qua nền tảng trực tuyến. Maison Mode hướng đến mục tiêu trở thành điểm đến mua sắm thời trang đa dạng, phù hợp với nhiều phong cách và phân khúc khách hàng.</p>
+        </div>
+    </section>
+    </main>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="trangchu.html" class="footer-logo"><img src="/assets/images/logo.png" alt="Maison Mode"></a>
+                <p class="footer-desc">Thời trang nữ thanh lịch, tinh tế dành cho phụ nữ hiện đại – từ công sở đến dạo phố.</p>
+                <ul class="footer-contact">
+                    <li><i class="fa-solid fa-location-dot"></i> 123 Đường Cần Thơ, Q. Ninh Kiều, TP. Cần Thơ</li>
+                    <li><i class="fa-solid fa-phone"></i> 0901 234 567</li>
+                    <li><i class="fa-solid fa-envelope"></i> maisonmode@gmail.com</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3 class="footer-title">Liên Kết Nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="trangchu.html">Trang Chủ</a></li>
+                    <li><a href="gioithieu.html">Giới Thiệu</a></li>
+                    <li><a href="sanpham.html">Sản Phẩm</a></li>
+                    <li><a href="giohang.html">Giỏ Hàng</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3 class="footer-title">Giờ mở cửa</h3>
+                <ul class="footer-links">
+                    <li>Thứ hai - Thứ sáu: 8:00 - 21:00</li>
+                    <li>Thứ bảy - Chủ Nhật: 9:00 - 22:00</li>
+                    <li>Ngày lễ: Thông báo riêng</li>
+                </ul>
+            </div>
+
+
+            <div class="footer-col">
+                <h3 class="footer-title">Kết Nối Với Chúng Tôi</h3>
+                <p class="footer-desc">Đăng ký để nhận ưu đãi và bộ sưu tập mới nhất.</p>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input class="newsletter-input" type="email" placeholder="Nhập email của bạn..." required>
+                    <button class="btn-newsletter" type="submit" title="Đăng ký"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+                <div class="footer-socials">
+                    <a href="https://facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Website bán quần áo | Nhập môn lập trình Web - Nhóm 5</p>
+        </div>
+    </footer>
+
+    <!-- Nút về đầu trang -->
+    <a href="#" class="back-to-top" title="Về đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/vetrangdau.js"></script>
+</body>
+</html>
