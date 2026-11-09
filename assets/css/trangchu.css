@@ -274,6 +274,9 @@ button, select, input { font-family: inherit; }
   object-fit: contain;
   display: block;
 }
+.sp.phukien img {
+    transform: translateY(-25px);
+}
 .overlay {
   position: absolute;
   inset: 0;
@@ -282,6 +285,98 @@ button, select, input { font-family: inherit; }
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
+}
+.toanbosp-button {
+    position: relative;
+    display: flex;
+    background: #363535;
+    color: #fff;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.gioithieungan-section {
+    display: flex;
+    gap: 8px;
+    margin: 60px 0;
+}
+.gioithieungan-img {
+    border-radius: 10px;
+    flex: 1;
+    min-width: 0;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    background-color: #1c1c1c;
+    margin: 2px;
+}
+.gioithieungan-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.gioithieungan-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0,0,0,0));
+    pointer-events: none;
+}
+.gioithieungan {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 35px;
+    color: white;
+}
+.gioithieungan h2 {
+    margin: 0;
+    font-size: 30px;
+    line-height: 1.2;
+}
+.chitietgt {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease, opacity 0.8s ease;
+}
+.chitietgt p {
+    margin: 18px 0 24px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.chitietgt a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: white;
+    color: #1c1c1c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.chitietgt i {
+    font-size: 18px;
+}
+.chitietgt a:hover {
+    background-color: #e3ddd3;
+}
+.gioithieungan-img:hover img, .gioithieungan-img:focus-within img {
+    transform: scale(1.1);
+}
+.gioithieungan-img:hover .chitietgt, .gioithieungan-img:focus-within .chitietgt {
+    max-height: 350px;
+    opacity: 1;
 }
 /* ----------------------- FOOTER -------------------------- */
 .main-footer {
