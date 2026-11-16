@@ -207,7 +207,7 @@ loginForm.addEventListener("submit", (event) => {
 
     showSuccess("Đăng nhập thành công!");
 
-    window.location.href = "index.html";
+    window.location.href = "trangchu.html";
 
 });
 
