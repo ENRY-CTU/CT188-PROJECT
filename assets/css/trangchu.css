@@ -223,10 +223,13 @@ button, select, input { font-family: inherit; }
 .banner-img {
   position: relative;
   width: 100%;
+  height: 800px;
+  overflow: hidden;
 }
 .banner-img img {
   display: block;
   width: 100%;
+  height: 100%;
 }
 .banner-img .banner2 {
   position: absolute;
@@ -247,14 +250,17 @@ button, select, input { font-family: inherit; }
   }
 }
 .title-danhmuc {
-  margin-top: 30px;
+  margin-top: 21px 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.title-danhmuc h1 {
+    margin: 21px;
+}
 .danhmucsp {
   max-width: 1200px;
-  margin: 60px auto;
+  margin: 50px auto;
   padding: 0 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -267,12 +273,16 @@ button, select, input { font-family: inherit; }
   cursor: pointer;
   background-color: white;
   border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 .sp img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+}
+.sp:hover {
+    transform: scale(1.03);
 }
 .sp.phukien img {
     transform: translateY(-25px);
@@ -297,6 +307,11 @@ button, select, input { font-family: inherit; }
     font-weight: bold;
     max-width: 300px;
     margin: 0 auto;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.toanbosp-button:hover {
+    transform: translateY(-6px);
+    box-shadow: -12px -12px 24px #ffffff, 12px 12px 24px #94a3b0;
 }
 .gioithieungan-section {
     display: flex;
@@ -458,111 +473,54 @@ button, select, input { font-family: inherit; }
 }
 
 /* ----------------------- RESPONSIVE -------------------------- */
-@media (max-width: 992px) {
-    .menu-btn { display: block; order: 1; }
-    .header-logo { order: 2; }
-    .header-actions { order: 3; }
-    .user-buttons { display: none; }
-    .mobile-auth { display: block; }
-
-    .main-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--color-ink);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
+@media (max-width: 768px){
+    .banner-img {height: 280px; }
+}
+@media (max-width: 576px){
+    .banner-img {height: 200px; }
+}
+@media (max-width: 768px) {
+    .danhmucsp {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+        grid-auto-rows: 260px;
+        margin: 20px auto;
     }
-
-    .main-nav .nav-list { flex-direction: column; padding: 10px 0; gap: 0; }
-    .nav-item { width: 100%; text-align: center; }
-    .nav-link { display: block; padding: 13px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-    .nav-link::after { display: none; }
-
-    .menu-checkbox:checked ~ .main-nav { max-height: 380px; }
-    .menu-checkbox:checked ~ .menu-btn .icon-open { display: none; }
-    .menu-checkbox:checked ~ .menu-btn .icon-close { display: inline-block; }
 }
-
-@media (min-width: 768px) {
-    .section-title { font-size: 2.8rem; }
-}
-
-@media (min-width: 992px) {
-    .product-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
-}
-
 @media (max-width: 576px) {
-    .product-grid { grid-template-columns: 1fr; }
-    .product-actions { flex-direction: column; }
-    .quantity-input { width: 100%; padding: 8px; }
-    .toolbar { flex-direction: column; align-items: flex-start; }
-    .toast-wrap { left: 15px; right: 15px; }
-    .toast { max-width: none; }
+    .danhmucsp {
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: 180px;
+        gap: 16px;
+    }
 }
-
-/* Màn hình lớn: bộ lọc cố định bên trái */
-@media (min-width: 1200px) {
-    .product-section {
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        grid-template-areas:
-            "title title"
-            "menu  products";
-        gap: 30px;
+@media (max-width: 768px){
+    .gioithieungan-section {
+        flex-direction: column;
+        margin: 14;
     }
-
-    .section-title { grid-area: title; margin-bottom: 10px; }
-    .product-content { grid-area: products; min-width: 0; }
-
-    .product-menu {
-        grid-area: menu;
-        background-color: #fff;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 22px 18px;
-        height: fit-content;
-        position: sticky;
-        top: 90px;
+    .gioithieungan-img {
+        height: 420px;
     }
-
-    .product-menu h3 {
-        display: block;
-        font-family: 'Playfair Display', Georgia, serif;
-        font-size: 1.15rem;
-        color: var(--color-accent);
-        margin-bottom: 14px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid var(--color-border);
+    .gioithieungan {
+        padding: 20px;
     }
-
-    .list-menu { flex-direction: column; overflow-x: visible; padding-bottom: 0; gap: 4px; }
-    .item-menu { width: 100%; }
-
-    .list-menu .link {
-        background: transparent;
-        border: none;
-        border-radius: 8px;
-        padding: 10px 12px;
-        font-size: 0.9rem;
+    .gioithieungan h2 {
+        font-size: 24px;
     }
-
-    .list-menu .link i { width: 18px; text-align: center; }
-    .list-menu .link:hover, .list-menu .link.active { background-color: var(--color-ink); color: #fff; }
-
-    .filter-price { display: block; margin-top: 24px; }
-
-    .radio-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 6px 4px;
-        font-size: 0.88rem;
-        cursor: pointer;
+    .chitietgt p {
+        font-size: 12px;
+        margin: 12px 0 16px;
     }
-
-    .radio-row input { accent-color: var(--color-accent); width: 16px; height: 16px; cursor: pointer; }
+}
+@media (max-width: 576px){
+    .gioithieungan-img {
+        height: 420px;
+    }
+}
+@media (hover: none){
+    .chitietgt {
+        max-height: 360px;
+        opacity: 1;
+    }
 }
