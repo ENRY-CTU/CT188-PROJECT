@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"><title>Product list</title>
+        <meta name="description" content="Shopping cart with HTML5, CSS3 and Vanilla JavaScript ES6+">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="giohang.css">
+    </head>
+
+    <body class="wrapper">
+        <header class="page-header">
+            <a class="logo" href="/index.html"><img src="/images/logolouis-vuitton.jpg" alt="logo"></a>
+            <h1>THỜI TRANG NAM CAO CẤP</h1>
+            <nav class="mini-nav">
+                <div class="shopping-cart">
+                    <p class="no-ordered-items">0</p>
+                    <i class="icon-cart fa fa-shopping-cart"></i>
+                </div>
+                <div id="authentication">
+                    <a href="/page/register.html">Đăng ký</a>
+                    <a href="/page/login.html">Đăng nhập</a>
+                </div>
+                <div id="user-info" class="hidden">
+                    <span id="principal"></span>
+                    <a href="#" id="logout">Đăng xuất</a>
+                </div>
+            </nav>
+        </header>
+        
+        <div class="store-toolbar">
+            <div class="category-filters">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="nu">Thời trang nam</button>
+                <button class="filter-btn" data-filter="cao-cap">Thời trang cao cấp</button>
+                <button class="filter-btn" data-filter="cong-so">Thời trang công sở</button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="product-search-input" placeholder="Tìm kiếm sản phẩm...">
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+
+        <main class="page-main">
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh1.webp" alt="ao1">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP001</p>
+                    <h3 class="item-title">Áo Polo Nam Dệt Kim Cổ Khóa Kéo</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">580.000đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh2.webp" alt="quan1">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP002</p>
+                    <h3 class="item-title">Quần Dài Nam ống suôn công sở</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                    </div>
+                    <p class="item-price">520.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+            
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh3.webp" alt="ao2">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP003</p>
+                    <h3 class="item-title">áo Polo dệt kim màu kem</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">450.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh4.webp" alt="quan2">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP004</p>
+                    <h3 class="item-title">Quần Dài Đen Dạng Túi Hộp Phong Cách Cargo</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">590.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh5.webp" alt="ao3">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP005</p>
+                    <h3 class="item-title">Áo Sơ Mi Dài Tay Nam Túi Hộp Phong Cách Outdoor</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">650.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh6.jpg" alt="quan3">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP006</p>
+                    <h3 class="item-title">Quần Tây Nam ống Suông Ly giữa cao cấp</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">580.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh7.webp" alt="ao4">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP007</p>
+                    <h3 class="item-title">áo Sơ Mi Trắng Nam Dài Tay Oxford</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">460.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+           <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh8.webp" alt="thatlung1">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP008</p>
+                    <h3 class="item-title">Thắt Lưng Nam Da Tổng Hợp Khóa Cổ Điển</h3>
+                    <p class="item-price">320.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh9.webp" alt="ao5">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP009</p>
+                    <h3 class="item-title">Áo Thun Nam Cotton Cổ Tròn</h3>
+                    <div class="size-selector">
+                       <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">290.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh10.webp" alt="ao6">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP010</p>
+                    <h3 class="item-title">Áo Nỉ Nam Cổ Cao Có Khóa Kéo</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">680.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh11.webp" alt="vo1">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP011</p>
+                    <h3 class="item-title">Vớ Tất Nam Cổ Cao Kẻ Sọc Thêu Logo</h3>
+                    <p class="item-price">85.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh12.webp" alt="vo2">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP012</p>
+                    <h3 class="item-title">Nón Kết Nam Thời Trang Sport Club</h3>
+                    <p class="item-price">220.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh13.webp" alt="non1">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP013</p>
+                    <h3 class="item-title">Nón Len Nam Mùa Đông</h3>
+                    <p class="item-price">150.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh14.webp" alt="ao7">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP014</p>
+                    <h3 class="item-title">Áo Thun Cổ Tròn In Chữ Tối Giản</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">290.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+
+            <article class="item" data-category="cong-so">
+                <div class="item-img-container">
+                    <span class="badge new">NEW</span>
+                    <img class="item-image" src="/images/anh15.webp" alt="ao8">
+                    <button class="quick-view-btn" title="Xem nhanh"><i class="fa fa-eye"></i></button>
+                </div>
+                <div class="item-info">
+                    <p class="item-id" hidden>SP015</p>
+                    <h3 class="item-title">áo khoác Bomber phối tay trắng kem</h3>
+                    <div class="size-selector">
+                        <span class="size-option">M</span>
+                        <span class="size-option active">L</span>
+                        <span class="size-option">XL</span>
+                        <span class="size-option">XXL</span>
+                    </div>
+                    <p class="item-price">890.000 đ</p>
+                </div>
+                <a href="#" class="add-cart">Thêm vào giỏ</a>
+            </article>
+        </main>
+
+        <script src="/js/product-list.js"></script>
+        <script src="/js/authentication.js"></script>
+        <script>
+            checkAuthentication();
+        </script>
+    </body>
+</html>
