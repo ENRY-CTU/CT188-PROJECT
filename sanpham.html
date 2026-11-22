@@ -12,19 +12,18 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/sanpham.css">
+    <link rel="stylesheet" href="assets/css/sanpham.css">
 </head>
 <body>
-    
-    <!-- ===================== HEADER ===================== -->
+    <!-- Header -->
     <header class="main-header">
         <div class="header-container">
 
             <!-- Logo -->
             <div class="header-logo">
-                <a href="trangchu.html" title="Maison Mode - Trang chủ"><img src="/assets/images/logo.png" alt="Maison Mode - Thời trang nữ"></a>
+                <a href="trangchu.html" title="Maison Mode - Trang chủ"><img src="assets/images/logo.png" alt="Maison Mode - Thời trang nữ"></a>
             </div>
 
             <!-- Nút menu cho màn hình nhỏ -->
@@ -73,7 +72,7 @@
         </div>
     </header>
 
-    <!-- ===================== MAIN ===================== -->
+    <!-- Main -->
     <main class="product-page">
 
         <!-- Breadcrumb -->
@@ -116,7 +115,9 @@
                 <!-- Khu vực danh sách -->
                 <div class="product-content">
                     <div class="toolbar">
-                        <p class="result-count" id="result-count" aria-live="polite"></p>
+                        <p class="result-count" id="result-count" aria-live="polite">
+                            Hiển thị <b id="shown-count">18</b> / <b id="total-count">18</b> sản phẩm<span id="keyword-text" style="display:none"> cho từ khóa "<b id="keyword-show"></b>"</span>
+                        </p>
                         <div class="sort-box">
                             <label for="sort-select"><i class="fa-solid fa-arrow-down-wide-short"></i> Sắp xếp:</label>
                             <select id="sort-select">
@@ -129,21 +130,627 @@
                         </div>
                     </div>
 
-                    <!-- Card sản phẩm được tạo bằng JavaScript -->
-                    <div class="product-grid" id="product-grid"></div>
+                    <!-- Danh sách sản phẩm -->
+                    <div class="product-grid" id="product-grid">
 
-                    <!-- Phân trang -->
-                    <nav class="pagination" id="pagination" aria-label="Phân trang"></nav>
+                        <!-- 1. Áo sơ mi lụa cổ nơ thanh lịch -->
+                        <article class="product-card" data-id="sp001" data-cat="ao" data-tags="new" data-price="590000" data-oldprice="0" data-index="0">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp001">
+                                <img src="assets/images/sanpham/artboard_3_copy_2_a99a62e2ad464f4aba4d55a4889f3abe.webp" alt="Áo sơ mi lụa cổ nơ thanh lịch" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Áo</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp001">Áo sơ mi lụa cổ nơ thanh lịch</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">590.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Trắng" title="Trắng" style="background-color:#ffffff"></button>
+                                    <button type="button" class="color-dot" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                    <button type="button" class="color-dot" data-color="Hồng" title="Hồng" style="background-color:#e8a3b5"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 2. Áo kiểu tay phồng vải tweed -->
+                        <article class="product-card" data-id="sp002" data-cat="ao" data-tags="hot" data-price="720000" data-oldprice="0" data-index="1">
+                            <div class="badges">
+                                <span class="badge badge-hot">HOT</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp002">
+                                <img src="/assets/images/sanpham/s65w23t001_40776133_9_46d65e6a02e74984a0c9c9d96fcffee2.webp" alt="Áo kiểu tay phồng vải tweed" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Áo</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp002">Áo kiểu tay phồng vải tweed</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">720.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 3. Chân váy chữ A xếp ly -->
+                        <article class="product-card" data-id="sp003" data-cat="vay" data-tags="new" data-price="480000" data-oldprice="0" data-index="2">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp003">
+                                <img src="assets/images/sanpham/chan-vay-xep-ly-xoe-chu-a-mau-den-cv06-07.webp" alt="Chân váy chữ A xếp ly" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Váy</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp003">Chân váy chữ A xếp ly</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">480.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Xanh navy" title="Xanh navy" style="background-color:#1f2f56"></button>
+                                    <button type="button" class="color-dot" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 4. Chân váy midi hoa nhí dáng xòe -->
+                        <article class="product-card" data-id="sp004" data-cat="vay" data-tags="hot sale" data-price="650000" data-oldprice="890000" data-index="3">
+                            <div class="badges">
+                                <span class="badge badge-hot">HOT</span>
+                                <span class="badge badge-sale">-27%</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp004">
+                                <img src="assets/images/sanpham/chan-vay-midi-xoe-hoa-nhi-mau-xanh-cv10-23.webp" alt="Chân váy midi hoa nhí dáng xòe" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Váy</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp004">Chân váy midi hoa nhí dáng xòe</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">650.000đ</ins>
+                                    <del class="price-old">890.000đ</del>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Xanh navy" title="Xanh navy" style="background-color:#1f2f56"></button>
+                                    <button type="button" class="color-dot" data-color="Hồng" title="Hồng" style="background-color:#e8a3b5"></button>
+                                    <button type="button" class="color-dot" data-color="Xanh lá" title="Xanh lá" style="background-color:#4f7a5a"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 5. Đầm xòe công sở cổ lệch xếp ly -->
+                        <article class="product-card" data-id="sp005" data-cat="dam" data-tags="new hot" data-price="1190000" data-oldprice="0" data-index="4">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                                <span class="badge badge-hot">HOT</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp005">
+                                <img src="assets/images/sanpham/dam-xoe-cong-so-co-lech-xep-ly-kk185-20.webp" alt="Đầm xòe công sở cổ lệch xếp ly" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Đầm</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp005">Đầm xòe công sở cổ lệch xếp ly</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">1.190.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Xanh navy" title="Xanh navy" style="background-color:#1f2f56"></button>
+                                    <button type="button" class="color-dot" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Đỏ" title="Đỏ" style="background-color:#b5253b"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 6. Đầm dạ hội satin đuôi cá -->
+                        <article class="product-card" data-id="sp006" data-cat="dam" data-tags="sale" data-price="1890000" data-oldprice="2490000" data-index="5">
+                            <div class="badges">
+                                <span class="badge badge-sale">-24%</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp006">
+                                <img src="assets/images/sanpham/vay-da-hoi-do-ta-dai-duoi-ca-1.jpg" alt="Đầm dạ hội satin đuôi cá" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Đầm</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp006">Đầm dạ hội satin đuôi cá</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">1.890.000đ</ins>
+                                    <del class="price-old">2.490.000đ</del>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đỏ" title="Đỏ" style="background-color:#b5253b"></button>
+                                    <button type="button" class="color-dot" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 7. Quần culottes ống rộng lưng cao -->
+                        <article class="product-card" data-id="sp007" data-cat="quan" data-tags="hot" data-price="550000" data-oldprice="0" data-index="6">
+                            <div class="badges">
+                                <span class="badge badge-hot">HOT</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp007">
+                                <img src="assets/images/sanpham/quan-culottes-nu-dang-lung-ong-rong-qcs02-33.webp" alt="Quần culottes ống rộng lưng cao" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Quần</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp007">Quần culottes ống rộng lưng cao</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">550.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                    <button type="button" class="color-dot" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Xám" title="Xám" style="background-color:#9a9a9a"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 8. Quần tây ống đứng công sở -->
+                        <article class="product-card" data-id="sp008" data-cat="quan" data-tags="sale" data-price="490000" data-oldprice="650000" data-index="7">
+                            <div class="badges">
+                                <span class="badge badge-sale">-25%</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp008">
+                                <img src="assets/images/sanpham/quan-tay-dung-qde017-2.jpg" alt="Quần tây ống đứng công sở" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Quần</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp008">Quần tây ống đứng công sở</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">490.000đ</ins>
+                                    <del class="price-old">650.000đ</del>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Xám" title="Xám" style="background-color:#9a9a9a"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 9. Áo khoác blazer dáng dài -->
+                        <article class="product-card" data-id="sp009" data-cat="khoac" data-tags="new hot" data-price="1490000" data-oldprice="0" data-index="8">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                                <span class="badge badge-hot">HOT</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp009">
+                                <img src="assets/images/sanpham/76c2a8d34e380353c8a26cfa4263e5062b34cd26.avif" alt="Áo khoác blazer dáng dài" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Áo khoác</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp009">Áo khoác blazer dáng dài</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">1.490.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                    <button type="button" class="color-dot" data-color="Xám" title="Xám" style="background-color:#9a9a9a"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 10. Áo khoác dạ lông cừu cổ vest -->
+                        <article class="product-card" data-id="sp010" data-cat="khoac" data-tags="sale" data-price="2290000" data-oldprice="2990000" data-index="9">
+                            <div class="badges">
+                                <span class="badge badge-sale">-23%</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp010">
+                                <img src="assets/images/sanpham/O1CN01Jnj4Pr1owsG5RgAhD_!!996795290-0-cib.jpg_960x960q90.jpg" alt="Áo khoác dạ lông cừu cổ vest" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Áo khoác</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp010">Áo khoác dạ lông cừu cổ vest</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">2.290.000đ</ins>
+                                    <del class="price-old">2.990.000đ</del>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Nâu" title="Nâu" style="background-color:#6b4a32"></button>
+                                    <button type="button" class="color-dot" data-color="Xám" title="Xám" style="background-color:#9a9a9a"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 11. Chân váy ngắn xếp ly -->
+                        <article class="product-card" data-id="sp011" data-cat="phukien" data-tags="hot" data-price="890000" data-oldprice="0" data-index="10">
+                            <div class="badges">
+                                <span class="badge badge-hot">HOT</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp011">
+                                <img src="assets/images/sanpham/chan-vay-tag-sat-ecochic-den.png" alt="Chân váy ngắn xếp ly" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Phụ kiện</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp011">Chân váy ngắn xếp ly</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">890.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Nâu" title="Nâu" style="background-color:#6b4a32"></button>
+                                    <button type="button" class="color-dot" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="Free">Free</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 12. Áo sơ mi denim tay dài -->
+                        <article class="product-card" data-id="sp012" data-cat="phukien" data-tags="new" data-price="320000" data-oldprice="0" data-index="11">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp012">
+                                <img src="assets/images/sanpham/goods_67_470735_3x4.avif" alt="Áo sơ mi denim tay dài" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Phụ kiện</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp012">Áo sơ mi denim tay dài</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">320.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Xanh navy" title="Xanh navy" style="background-color:#1f2f56"></button>
+                                    <button type="button" class="color-dot" data-color="Vàng" title="Vàng" style="background-color:#e0b84c"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="Free">Free</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 13. Áo len cổ lọ dệt kim mềm -->
+                        <article class="product-card" data-id="sp013" data-cat="ao" data-tags="sale" data-price="420000" data-oldprice="560000" data-index="12">
+                            <div class="badges">
+                                <span class="badge badge-sale">-25%</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp013">
+                                <img src="assets/images/sanpham/6892-ao-len-co-lo-mau-tron-7.jpg" alt="Áo len cổ lọ dệt kim mềm" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Áo</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp013">Áo len cổ lọ dệt kim mềm</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">420.000đ</ins>
+                                    <del class="price-old">560.000đ</del>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                    <button type="button" class="color-dot" data-color="Xám" title="Xám" style="background-color:#9a9a9a"></button>
+                                    <button type="button" class="color-dot" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 14. Đầm xòe tiệc linen dài cổ thuyền -->
+                        <article class="product-card" data-id="sp014" data-cat="dam" data-tags="" data-price="780000" data-oldprice="0" data-index="13">
+                            <div class="badges"></div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp014">
+                                <img src="assets/images/sanpham/d_m_x_e_d__ti_c_phom_d_i_d4529t_m_u_kem_9826a6e633ae4e6e9f33012f8eba5564_master.webp" alt="Đầm xòe tiệc linen dài cổ thuyền" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Đầm</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp014">Đầm xòe tiệc linen dài cổ thuyền</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">780.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                    <button type="button" class="color-dot" data-color="Trắng" title="Trắng" style="background-color:#ffffff"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 15. Chân váy bút chì đen xẻ trước -->
+                        <article class="product-card" data-id="sp015" data-cat="vay" data-tags="" data-price="450000" data-oldprice="0" data-index="14">
+                            <div class="badges"></div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp015">
+                                <img src="assets/images/sanpham/chan-vay-but-chi-den-xe-truoc-cv04-06.webp" alt="Chân váy bút chì đen xẻ trước" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Váy</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp015">Chân váy bút chì đen xẻ trước</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">450.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Xanh navy" title="Xanh navy" style="background-color:#1f2f56"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 16. Áo khoác cardigan dáng lửng -->
+                        <article class="product-card" data-id="sp016" data-cat="khoac" data-tags="new" data-price="690000" data-oldprice="0" data-index="15">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp016">
+                                <img src="assets/images/sanpham/40ebe98051bc245f23e2a3c9413668a671840c55.avif" alt="Áo khoác cardigan dáng lửng" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Áo khoác</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp016">Áo khoác cardigan dáng lửng</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">690.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Hồng" title="Hồng" style="background-color:#e8a3b5"></button>
+                                    <button type="button" class="color-dot" data-color="Be" title="Be" style="background-color:#d9c3a5"></button>
+                                    <button type="button" class="color-dot" data-color="Xám" title="Xám" style="background-color:#9a9a9a"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 17. Quần suông dài ống rộng lưng cao -->
+                        <article class="product-card" data-id="sp017" data-cat="phukien" data-tags="sale" data-price="260000" data-oldprice="380000" data-index="16">
+                            <div class="badges">
+                                <span class="badge badge-sale">-32%</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp017">
+                                <img src="assets/images/sanpham/quan-suong-dai-ong-rong-lung-cao-qcs02-17.webp" alt="Quần suông dài ống rộng lưng cao" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Phụ kiện</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp017">Quần suông dài ống rộng lưng cao</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">260.000đ</ins>
+                                    <del class="price-old">380.000đ</del>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                    <button type="button" class="color-dot" data-color="Trắng" title="Trắng" style="background-color:#ffffff"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="Free">Free</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 18. Quần jeans ống loe cạp cao -->
+                        <article class="product-card" data-id="sp018" data-cat="quan" data-tags="new" data-price="520000" data-oldprice="0" data-index="17">
+                            <div class="badges">
+                                <span class="badge badge-new">NEW</span>
+                            </div>
+                            <button type="button" class="btn-wish" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+                            <a class="product-thumb" href="chitiet.html?id=sp018">
+                                <img src="assets/images/sanpham/quan-jeans-nu-ong-loe-cap-cao-qj-17.webp" alt="Quần jeans ống loe cạp cao" loading="lazy">
+                            </a>
+                            <div class="product-info">
+                                <p class="product-cat">Quần</p>
+                                <h2 class="product-title"><a href="chitiet.html?id=sp018">Quần jeans ống loe cạp cao</a></h2>
+                                <p class="product-price">
+                                    <ins class="price-new">520.000đ</ins>
+                                </p>
+                                <div class="color-list">
+                                    <button type="button" class="color-dot selected" data-color="Xanh navy" title="Xanh navy" style="background-color:#1f2f56"></button>
+                                    <button type="button" class="color-dot" data-color="Đen" title="Đen" style="background-color:#1c1c1c"></button>
+                                </div>
+                                <div class="size-list">
+                                    <button type="button" class="size-btn selected" data-size="S">S</button>
+                                    <button type="button" class="size-btn" data-size="M">M</button>
+                                    <button type="button" class="size-btn" data-size="L">L</button>
+                                    <button type="button" class="size-btn" data-size="XL">XL</button>
+                                </div>
+                                <div class="product-actions">
+                                    <input type="number" class="quantity-input" value="1" min="1" max="20" aria-label="Số lượng">
+                                    <button type="button" class="btn-action btn-add" title="Thêm vào giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ</button>
+                                    <button type="button" class="btn-action btn-buy" title="Mua ngay">Mua ngay</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Hiện khi lọc không có kết quả -->
+                        <div class="empty-state" id="empty-state" style="display:none">
+                            <i class="fa-regular fa-face-frown"></i>
+                            <h3>Không tìm thấy sản phẩm phù hợp</h3>
+                            <p>Hãy thử đổi bộ lọc hoặc từ khóa khác.</p>
+                            <button type="button" class="btn-reset" id="btn-reset">Xóa bộ lọc</button>
+                        </div>
+
+                    </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- ===================== FOOTER ===================== -->
+    <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-col">
-                <a href="trangchu.html" class="footer-logo"><img src="/assets/images/logo.png" alt="Maison Mode"></a>
+                <a href="trangchu.html" class="footer-logo"><img src="assets/images/logo.png" alt="Maison Mode"></a>
                 <p class="footer-desc">Thời trang nữ thanh lịch, tinh tế dành cho phụ nữ hiện đại – từ công sở đến dạo phố.</p>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-location-dot"></i> 123 Đường Cần Thơ, Q. Ninh Kiều, TP. Cần Thơ</li>
@@ -163,14 +770,14 @@
             </div>
 
             <div class="footer-col">
-                <h3 class="footer-title">Giờ mở cửa</h3>
+                <h3 class="footer-title">Hỗ Trợ Khách Hàng</h3>
                 <ul class="footer-links">
-                    <li>Thứ hai - Thứ sáu: 8:00 - 21:00</li>
-                    <li>Thứ bảy - Chủ Nhật: 9:00 - 22:00</li>
-                    <li>Ngày lễ: Thông báo riêng</li>
+                    <li><a href="#">Hướng dẫn chọn size</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Bảo mật thông tin</a></li>
                 </ul>
             </div>
-
 
             <div class="footer-col">
                 <h3 class="footer-title">Kết Nối Với Chúng Tôi</h3>
@@ -189,7 +796,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 Website bán quần áo | Nhập môn lập trình Web - Nhóm 5</p>
+            <p>&copy; 2026 Website bán quần áo | Nhập môn lập trình Web - Nhóm ...</p>
         </div>
     </footer>
 
@@ -197,6 +804,6 @@
     <a href="#" class="back-to-top" title="Về đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
 
     <!-- JavaScript -->
-    <script src="/assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

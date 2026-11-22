@@ -106,3 +106,57 @@
 
 .back-to-top.show { opacity: 1; visibility: visible; transform: none; }
 .back-to-top:hover { background-color: var(--color-accent); transform: translateY(-3px); }
+/* Responsive trang giới thiệu */
+@media (max-width: 768px) {
+    .gioithieu {
+        padding: 20px;
+    }
+
+    .gioithieu h1 {
+        font-size: 1.8rem;
+    }
+
+    .tieude2 {
+        font-size: 1.5rem;
+    }
+
+    .noidung p {
+        font-size: 0.9rem;
+        text-align: justify;
+    }
+
+    .gt-haianh {
+        flex-direction: column;
+    }
+
+    .gt-haianh img {
+        width: 100%;
+    }
+}
+/* Responsive trang giới thiệu, phần còn lại head, footer lấy bên css sản phẩm */
+@media (max-width: 768px) {
+    .gioithieu {
+        padding: 20px;
+    }
+
+    .gioithieu h1 {
+        font-size: 1.8rem;
+    }
+
+    .tieude2 {
+        font-size: 1.5rem;
+    }
+
+    .noidung p {
+        font-size: 0.9rem;
+        text-align: justify;
+    }
+
+    .gt-haianh {
+        flex-direction: column;
+    }
+
+    .gt-haianh img {
+        width: 100%;
+    }
+}

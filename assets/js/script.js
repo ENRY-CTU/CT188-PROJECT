@@ -1,244 +1,120 @@
 /* ==========================================================
    MAISON MODE - TRANG DANH SÁCH SẢN PHẨM
-   Chức năng: hiển thị sản phẩm, lọc danh mục, lọc giá, tìm kiếm,
-   sắp xếp, phân trang, chọn size/màu, giỏ hàng (localStorage),
-   yêu thích, thông báo toast, nút về đầu trang.
+   Các thẻ sản phẩm viết sẵn trong sanpham.html (Cách 1).
+   File này xử lý: lọc, tìm kiếm, sắp xếp, chọn size/màu,
+   giỏ hàng, yêu thích, thông báo, nút về đầu trang.
    ========================================================== */
 
-/* ------------------------- CẤU HÌNH & DỮ LIỆU ------------------------- */
-var PAGE_SIZE = 9;                 // Số sản phẩm mỗi trang
-var CART_KEY = "mm_cart";          // Khóa giỏ hàng trong localStorage
-var WISH_KEY = "mm_wishlist";      // Khóa danh sách yêu thích
-var MAX_QTY = 20;                  // Số lượng tối đa mỗi dòng giỏ hàng
+var CART_KEY = "mm_cart";      // key giỏ hàng trong localStorage
+var WISH_KEY = "mm_wishlist";  // key danh sách yêu thích
+var MAX_QTY = 20;              // số lượng tối đa của 1 dòng trong giỏ
 
-// Tên hiển thị của danh mục
-var CATEGORY_NAME = {
-    ao: "Áo", vay: "Váy", dam: "Đầm", quan: "Quần",
-    khoac: "Áo khoác", phukien: "Phụ kiện"
-};
+// Lưu lại các lựa chọn lọc hiện tại
+var state = { category: "all", price: "all", sort: "default", keyword: "" };
 
-// Bảng màu
-var COLOR_HEX = {
-    "Đen": "#1c1c1c", "Trắng": "#ffffff", "Be": "#d9c3a5", "Đỏ": "#b5253b",
-    "Xanh navy": "#1f2f56", "Hồng": "#e8a3b5", "Xám": "#9a9a9a",
-    "Nâu": "#6b4a32", "Xanh lá": "#4f7a5a", "Vàng": "#e0b84c"
-};
+/* ---------- Hàm phụ ---------- */
 
-var SIZES_CLOTHES = ["S", "M", "L", "XL"];
-var SIZES_FREE = ["Free"];
-
-/*
-  Dữ liệu sản phẩm.
-  tags : nhãn lọc (new / hot / sale) | cat : danh mục chính
-  oldPrice > price => sản phẩm giảm giá
-*/
-var products = [
-    { id: "sp001", name: "Áo sơ mi lụa cổ nơ thanh lịch", cat: "ao", tags: ["new"], price: 590000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Trắng", "Be", "Hồng"], photo: "/assets/images/sanpham/artboard_3_copy_2_a99a62e2ad464f4aba4d55a4889f3abe.webp" },
-    { id: "sp002", name: "Áo kiểu tay phồng vải tweed", cat: "ao", tags: ["hot"], price: 720000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Đen", "Be"], photo: "/assets/images/sanpham/s65w23t001_40776133_9_46d65e6a02e74984a0c9c9d96fcffee2.webp" },
-    { id: "sp003", name: "Chân váy chữ A xếp ly", cat: "vay", tags: ["new"], price: 480000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Đen", "Xanh navy", "Be"], photo: "/assets/images/sanpham/chan-vay-xep-ly-xoe-chu-a-mau-den-cv06-07.webp" },
-    { id: "sp004", name: "Chân váy midi hoa nhí dáng xòe", cat: "vay", tags: ["hot", "sale"], price: 650000, oldPrice: 890000,
-      sizes: SIZES_CLOTHES, colors: ["Xanh navy", "Hồng", "Xanh lá"], photo: "/assets/images/sanpham/chan-vay-midi-xoe-hoa-nhi-mau-xanh-cv10-23.webp" },
-    { id: "sp005", name: "Đầm xòe công sở cổ lệch xếp ly", cat: "dam", tags: ["new", "hot"], price: 1190000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Xanh navy","Đen" , "Đỏ"], photo: "/assets/images/sanpham/dam-xoe-cong-so-co-lech-xep-ly-kk185-20.webp" },
-    { id: "sp006", name: "Đầm dạ hội satin đuôi cá", cat: "dam", tags: ["sale"], price: 1890000, oldPrice: 2490000,
-      sizes: SIZES_CLOTHES, colors: ["Đỏ", "Đen"], photo: "/assets/images/sanpham/vay-da-hoi-do-ta-dai-duoi-ca-1.jpg" },
-    { id: "sp007", name: "Quần culottes ống rộng lưng cao", cat: "quan", tags: ["hot"], price: 550000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Be","Đen" , "Xám"], photo: "/assets/images/sanpham/quan-culottes-nu-dang-lung-ong-rong-qcs02-33.webp" },
-    { id: "sp008", name: "Quần tây ống đứng công sở", cat: "quan", tags: ["sale"], price: 490000, oldPrice: 650000,
-      sizes: SIZES_CLOTHES, colors: ["Đen", "Xám"], photo: "/assets/images/sanpham/quan-tay-dung-qde017-2.jpg" },
-    { id: "sp009", name: "Áo khoác blazer dáng dài", cat: "khoac", tags: ["new", "hot"], price: 1490000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Đen", "Be", "Xám"], photo: "/assets/images/sanpham/76c2a8d34e380353c8a26cfa4263e5062b34cd26.png" },
-    { id: "sp010", name: "Áo khoác dạ lông cừu cổ vest", cat: "khoac", tags: ["sale"], price: 2290000, oldPrice: 2990000,
-      sizes: SIZES_CLOTHES, colors: ["Nâu", "Xám"], photo: "/assets/images/sanpham/O1CN01Jnj4Pr1owsG5RgAhD_!!996795290-0-cib.jpg_960x960q90.jpg" },
-    { id: "sp011", name: "Chân váy ngắn xếp ly", cat: "phukien", tags: ["hot"], price: 890000, oldPrice: 0,
-      sizes: SIZES_FREE, colors: ["Đen", "Nâu", "Be"], photo: "/assets/images/sanpham/chan-vay-tag-sat-ecochic-den.png" },
-    { id: "sp012", name: "Áo sơ mi denim tay dài", cat: "phukien", tags: ["new"], price: 320000, oldPrice: 0,
-      sizes: SIZES_FREE, colors: ["Xanh navy", "Vàng"], photo: "/assets/images/sanpham/goods_67_470735_3x4.avif" },
-    { id: "sp013", name: "Áo len cổ lọ dệt kim mềm", cat: "ao", tags: ["sale"], price: 420000, oldPrice: 560000,
-      sizes: SIZES_CLOTHES, colors: ["Be", "Xám", "Đen"], photo: "/assets/images/sanpham/6892-ao-len-co-lo-mau-tron-7.jpg" },
-    { id: "sp014", name: "Đầm xòe tiệc linen dài cổ thuyền", cat: "dam", tags: [], price: 780000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Be", "Trắng"], photo: "/assets/images/sanpham/d_m_x_e_d__ti_c_phom_d_i_d4529t_m_u_kem_9826a6e633ae4e6e9f33012f8eba5564_master.webp" },
-    { id: "sp015", name: "Chân váy bút chì đen xẻ trước", cat: "vay", tags: [], price: 450000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Đen", "Xanh navy"], photo: "/assets/images/sanpham/chan-vay-but-chi-den-xe-truoc-cv04-06.webp" },
-    { id: "sp016", name: "Áo khoác cardigan dáng lửng", cat: "khoac", tags: ["new"], price: 690000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Hồng", "Be", "Xám"], photo: "/assets/images/sanpham/40ebe98051bc245f23e2a3c9413668a671840c55.avif" },
-    { id: "sp017", name: "Quần suông dài ống rộng lưng cao", cat: "phukien", tags: ["sale"], price: 260000, oldPrice: 380000,
-      sizes: SIZES_FREE, colors: ["Đen","Trắng" ], photo: "/assets/images/sanpham/quan-suong-dai-ong-rong-lung-cao-qcs02-17.webp" },
-    { id: "sp018", name: "Quần jeans ống loe cạp cao", cat: "quan", tags: ["new"], price: 520000, oldPrice: 0,
-      sizes: SIZES_CLOTHES, colors: ["Xanh navy", "Đen"], photo: "/assets/images/sanpham/quan-jeans-nu-ong-loe-cap-cao-qj-17.webp" }
-];
-
-// Trạng thái bộ lọc hiện tại
-var state = { category: "all", price: "all", sort: "default", page: 1, keyword: "" };
-
-// Lựa chọn size / màu của từng thẻ sản phẩm (chưa thêm vào giỏ)
-var picked = {};
-
-/* ------------------------- TIỆN ÍCH ------------------------- */
-// Định dạng tiền Việt Nam
-function formatMoney(n) {
-    return new Intl.NumberFormat("vi-VN").format(n) + "đ";
-}
-
-// Chống chèn mã HTML từ dữ liệu / từ khóa
-function escapeHTML(str) {
-    return String(str).replace(/[&<>"']/g, function (c) {
-        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
-}
-
-// Bỏ dấu tiếng Việt để tìm kiếm thân thiện ("ao so mi" vẫn ra "Áo sơ mi")
-function removeAccent(str) {
-    return String(str).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase();
-}
-
-function getProduct(id) {
-    return products.find(function (p) { return p.id === id; });
-}
-
-function discountPercent(p) {
-    return p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
-}
-
-// Ảnh thay thế khi thiếu file ảnh (SVG nhúng sẵn)
-var PLACEHOLDER = "data:image/svg+xml;utf8," + encodeURIComponent(
-    "<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'>" +
-    "<rect width='100%' height='100%' fill='#efe9df'/>" +
-    "<text x='50%' y='50%' fill='#a39a8d' font-family='Arial' font-size='28' text-anchor='middle'>Maison Mode</text></svg>");
-
-/* ------------------------- LỌC / SẮP XẾP ------------------------- */
-function getFilteredProducts() {
-    var list = products.filter(function (p) {
-        // 1. Danh mục
-        var okCat = state.category === "all" ||
-            p.cat === state.category || p.tags.indexOf(state.category) !== -1;
-
-        // 2. Khoảng giá
-        var okPrice = true;
-        if (state.price !== "all") {
-            var range = state.price.split("-");
-            okPrice = p.price >= Number(range[0]) && p.price <= Number(range[1]);
-        }
-
-        // 3. Từ khóa (tên + tên danh mục)
-        var okKey = true;
-        if (state.keyword) {
-            var text = removeAccent(p.name + " " + CATEGORY_NAME[p.cat]);
-            okKey = text.indexOf(removeAccent(state.keyword)) !== -1;
-        }
-        return okCat && okPrice && okKey;
-    });
-
-    // 4. Sắp xếp
-    switch (state.sort) {
-        case "price-asc":  list.sort(function (a, b) { return a.price - b.price; }); break;
-        case "price-desc": list.sort(function (a, b) { return b.price - a.price; }); break;
-        case "name-asc":   list.sort(function (a, b) { return a.name.localeCompare(b.name, "vi"); }); break;
-        case "discount":   list.sort(function (a, b) { return discountPercent(b) - discountPercent(a); }); break;
+// Tính % giảm giá của 1 sản phẩm
+function getDiscount(card) {
+    var price = Number(card.getAttribute("data-price"));
+    var oldPrice = Number(card.getAttribute("data-oldprice"));
+    if (oldPrice > price) {
+        return Math.round((1 - price / oldPrice) * 100);
     }
-    return list;
+    return 0;
 }
 
-/* ------------------------- HIỂN THỊ ------------------------- */
-function buildCard(p, index) {
-    var wishes = getWishlist();
-    var isWish = wishes.indexOf(p.id) !== -1;
-    var off = discountPercent(p);
+/* ---------- Lọc và sắp xếp ---------- */
 
-    // Huy hiệu
-    var badges = "";
-    if (p.tags.indexOf("new") !== -1)  badges += "<span class='badge badge-new'>NEW</span>";
-    if (p.tags.indexOf("hot") !== -1)  badges += "<span class='badge badge-hot'>HOT</span>";
-    if (off > 0)                       badges += "<span class='badge badge-sale'>-" + off + "%</span>";
+// Xem 1 sản phẩm có hợp với bộ lọc hiện tại không
+function isMatch(card) {
+    // danh mục: so với data-cat hoặc các nhãn new / hot / sale
+    var tags = card.getAttribute("data-tags").split(" ");
+    var okCat = state.category === "all" ||
+                card.getAttribute("data-cat") === state.category ||
+                tags.indexOf(state.category) !== -1;
 
-    // Giá
-    var price = off > 0
-        ? "<ins class='price-new'>" + formatMoney(p.price) + "</ins>" +
-          "<del class='price-old'>" + formatMoney(p.oldPrice) + "</del>"
-        : "<ins class='price-new'>" + formatMoney(p.price) + "</ins>";
+    // khoảng giá, ví dụ "0-500000"
+    var okPrice = true;
+    if (state.price !== "all") {
+        var range = state.price.split("-");
+        var price = Number(card.getAttribute("data-price"));
+        okPrice = price >= Number(range[0]) && price <= Number(range[1]);
+    }
 
-    // Màu
-    var colors = p.colors.map(function (c, i) {
-        return "<button type='button' class='color-dot" + (i === 0 ? " selected" : "") + "' " +
-               "data-color='" + escapeHTML(c) + "' title='" + escapeHTML(c) + "' " +
-               "style='background-color:" + COLOR_HEX[c] + "'></button>";
-    }).join("");
+    // từ khóa: tìm trong tên và tên danh mục
+    var okKey = true;
+    if (state.keyword !== "") {
+        var text = card.querySelector(".product-title").textContent + " " +
+                   card.querySelector(".product-cat").textContent;
+        okKey = text.toLowerCase().indexOf(state.keyword.toLowerCase()) !== -1;
+    }
 
-    // Size
-    var sizes = p.sizes.map(function (s, i) {
-        return "<button type='button' class='size-btn" + (i === 0 ? " selected" : "") + "' data-size='" + s + "'>" + s + "</button>";
-    }).join("");
-
-    return "" +
-    "<article class='product-card' data-id='" + p.id + "' style='animation-delay:" + (index * 0.05) + "s'>" +
-        "<div class='badges'>" + badges + "</div>" +
-        "<button type='button' class='btn-wish" + (isWish ? " active" : "") + "' title='Yêu thích'>" +
-            "<i class='" + (isWish ? "fa-solid" : "fa-regular") + " fa-heart'></i></button>" +
-        "<a class='product-thumb' href='chitiet.html?id=" + p.id + "'>" +
-            "<img src='" + p.photo + "' alt='" + escapeHTML(p.name) + "' loading='lazy' onerror=\"this.onerror=null;this.src=PLACEHOLDER\">" +
-        "</a>" +
-        "<div class='product-info'>" +
-            "<p class='product-cat'>" + CATEGORY_NAME[p.cat] + "</p>" +
-            "<h2 class='product-title'><a href='chitiet.html?id=" + p.id + "'>" + escapeHTML(p.name) + "</a></h2>" +
-            "<p class='product-price'>" + price + "</p>" +
-            "<div class='color-list'>" + colors + "</div>" +
-            "<div class='size-list'>" + sizes + "</div>" +
-            "<div class='product-actions'>" +
-                "<input type='number' class='quantity-input' value='1' min='1' max='" + MAX_QTY + "' aria-label='Số lượng'>" +
-                "<button type='button' class='btn-action btn-add' title='Thêm vào giỏ hàng'><i class='fa-solid fa-bag-shopping'></i> Thêm vào giỏ</button>" +
-                "<button type='button' class='btn-action btn-buy' title='Mua ngay'>Mua ngay</button>" +
-            "</div>" +
-        "</div>" +
-    "</article>";
+    return okCat && okPrice && okKey;
 }
 
-function renderProducts() {
+// Sắp xếp lại vị trí các thẻ trong lưới
+function sortCards() {
     var grid = document.getElementById("product-grid");
-    var list = getFilteredProducts();
-    var totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
-    if (state.page > totalPages) state.page = totalPages;
+    var cards = Array.from(grid.querySelectorAll(".product-card"));
 
-    var start = (state.page - 1) * PAGE_SIZE;
-    var pageItems = list.slice(start, start + PAGE_SIZE);
+    cards.sort(function (a, b) {
+        var priceA = Number(a.getAttribute("data-price"));
+        var priceB = Number(b.getAttribute("data-price"));
+        var nameA = a.querySelector(".product-title").textContent;
+        var nameB = b.querySelector(".product-title").textContent;
 
-    // Số lượng kết quả
-    var countEl = document.getElementById("result-count");
-    countEl.innerHTML = "Hiển thị <b>" + pageItems.length + "</b> / <b>" + list.length + "</b> sản phẩm" +
-        (state.keyword ? " cho từ khóa \"<b>" + escapeHTML(state.keyword) + "</b>\"" : "");
+        if (state.sort === "price-asc") return priceA - priceB;
+        if (state.sort === "price-desc") return priceB - priceA;
+        if (state.sort === "name-asc") return nameA.localeCompare(nameB, "vi");
+        if (state.sort === "discount") return getDiscount(b) - getDiscount(a);
+        // mặc định: theo thứ tự ban đầu trong HTML
+        return Number(a.getAttribute("data-index")) - Number(b.getAttribute("data-index"));
+    });
 
-    if (list.length === 0) {
-        grid.innerHTML = "<div class='empty-state'><i class='fa-regular fa-face-frown'></i>" +
-            "<h3>Không tìm thấy sản phẩm phù hợp</h3><p>Hãy thử đổi bộ lọc hoặc từ khóa khác.</p>" +
-            "<button type='button' class='btn-reset' id='btn-reset'>Xóa bộ lọc</button></div>";
+    // đưa từng thẻ về trước khối "không có kết quả" theo thứ tự mới
+    var emptyBox = document.getElementById("empty-state");
+    cards.forEach(function (card) {
+        grid.insertBefore(card, emptyBox);
+    });
+}
+
+// Lọc + sắp xếp rồi cập nhật số lượng kết quả
+function applyFilters() {
+    sortCards();
+
+    var cards = document.querySelectorAll("#product-grid .product-card");
+    var shown = 0;
+    cards.forEach(function (card) {
+        if (isMatch(card)) {
+            card.style.display = "";
+            shown++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    document.getElementById("shown-count").textContent = shown;
+    document.getElementById("total-count").textContent = cards.length;
+
+    // dòng "cho từ khóa ..." chỉ hiện khi đang tìm kiếm
+    var keywordText = document.getElementById("keyword-text");
+    if (state.keyword !== "") {
+        document.getElementById("keyword-show").textContent = state.keyword;
+        keywordText.style.display = "";
     } else {
-        grid.innerHTML = pageItems.map(buildCard).join("");
+        keywordText.style.display = "none";
     }
-    renderPagination(totalPages);
+
+    // không có sản phẩm nào thì hiện thông báo
+    document.getElementById("empty-state").style.display = (shown === 0) ? "" : "none";
 }
 
-function renderPagination(totalPages) {
-    var box = document.getElementById("pagination");
-    if (totalPages <= 1) { box.innerHTML = ""; return; }
+/* ---------- Giỏ hàng ---------- */
+// Giỏ hàng lưu dạng mảng: [{ id, size, color, qty }, ...]
 
-    var html = "<button class='page-btn' data-page='" + (state.page - 1) + "'" +
-               (state.page === 1 ? " disabled" : "") + "><i class='fa-solid fa-angle-left'></i></button>";
-    for (var i = 1; i <= totalPages; i++) {
-        html += "<button class='page-btn" + (i === state.page ? " active" : "") + "' data-page='" + i + "'>" + i + "</button>";
-    }
-    html += "<button class='page-btn' data-page='" + (state.page + 1) + "'" +
-            (state.page === totalPages ? " disabled" : "") + "><i class='fa-solid fa-angle-right'></i></button>";
-    box.innerHTML = html;
-}
-
-/* ------------------------- GIỎ HÀNG ------------------------- */
-// Cấu trúc: [{ id, size, color, qty }, ...]
 function getCart() {
-    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-    catch (e) { return []; }
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
 }
 
 function saveCart(cart) {
@@ -246,14 +122,19 @@ function saveCart(cart) {
 }
 
 function updateCartBadge() {
-    var total = getCart().reduce(function (sum, it) { return sum + it.qty; }, 0);
-    document.querySelectorAll(".cart-badge").forEach(function (b) { b.textContent = total; });
+    var total = 0;
+    getCart().forEach(function (item) {
+        total += item.qty;
+    });
+    document.querySelectorAll(".cart-badge").forEach(function (badge) {
+        badge.textContent = total;
+    });
 }
 
-// Thêm vào giỏ; trả về true nếu thành công
+// Thêm sản phẩm vào giỏ, thành công thì trả về true
 function addToCart(card) {
     var id = card.getAttribute("data-id");
-    var p = getProduct(id);
+    var name = card.querySelector(".product-title").textContent;
     var qty = parseInt(card.querySelector(".quantity-input").value, 10);
 
     if (isNaN(qty) || qty <= 0) {
@@ -262,49 +143,63 @@ function addToCart(card) {
     }
     if (qty > MAX_QTY) qty = MAX_QTY;
 
-    var sizeEl = card.querySelector(".size-btn.selected");
-    var colorEl = card.querySelector(".color-dot.selected");
-    var size = sizeEl ? sizeEl.getAttribute("data-size") : p.sizes[0];
-    var color = colorEl ? colorEl.getAttribute("data-color") : p.colors[0];
+    var size = card.querySelector(".size-btn.selected").getAttribute("data-size");
+    var color = card.querySelector(".color-dot.selected").getAttribute("data-color");
 
+    // nếu đã có cùng sản phẩm + size + màu thì cộng thêm số lượng
     var cart = getCart();
-    var found = cart.find(function (it) { return it.id === id && it.size === size && it.color === color; });
-
+    var found = cart.find(function (item) {
+        return item.id === id && item.size === size && item.color === color;
+    });
     if (found) {
         found.qty = Math.min(found.qty + qty, MAX_QTY);
     } else {
         cart.push({ id: id, size: size, color: color, qty: qty });
     }
+
     saveCart(cart);
     updateCartBadge();
-    showToast("Đã thêm \"" + p.name + "\" (" + color + ", " + size + ") vào giỏ hàng!");
+    showToast("Đã thêm \"" + name + "\" (" + color + ", " + size + ") vào giỏ hàng!");
     return true;
 }
 
-/* ------------------------- YÊU THÍCH ------------------------- */
+/* ---------- Yêu thích ---------- */
+
 function getWishlist() {
-    try { return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }
-    catch (e) { return []; }
+    return JSON.parse(localStorage.getItem(WISH_KEY)) || [];
+}
+
+// Khi mở trang, tô đỏ những sản phẩm đã yêu thích trước đó
+function loadWishlist() {
+    var wishes = getWishlist();
+    document.querySelectorAll(".product-card").forEach(function (card) {
+        if (wishes.indexOf(card.getAttribute("data-id")) !== -1) {
+            card.querySelector(".btn-wish").classList.add("active");
+            card.querySelector(".btn-wish i").className = "fa-solid fa-heart";
+        }
+    });
 }
 
 function toggleWish(id, btn) {
     var list = getWishlist();
-    var idx = list.indexOf(id);
+    var index = list.indexOf(id);
     var icon = btn.querySelector("i");
-    if (idx === -1) {
+
+    if (index === -1) {
         list.push(id);
         btn.classList.add("active");
         icon.className = "fa-solid fa-heart";
         showToast("Đã thêm vào danh sách yêu thích!");
     } else {
-        list.splice(idx, 1);
+        list.splice(index, 1);
         btn.classList.remove("active");
         icon.className = "fa-regular fa-heart";
     }
     localStorage.setItem(WISH_KEY, JSON.stringify(list));
 }
 
-/* ------------------------- THÔNG BÁO TOAST ------------------------- */
+/* ---------- Thông báo (toast) ---------- */
+
 function showToast(message, type) {
     var wrap = document.querySelector(".toast-wrap");
     if (!wrap) {
@@ -312,66 +207,76 @@ function showToast(message, type) {
         wrap.className = "toast-wrap";
         document.body.appendChild(wrap);
     }
+
     var toast = document.createElement("div");
-    toast.className = "toast" + (type === "error" ? " error" : "");
-    toast.innerHTML = "<i class='fa-solid " + (type === "error" ? "fa-circle-exclamation" : "fa-circle-check") + "'></i><span>" +
-        escapeHTML(message) + "</span>";
+    toast.className = "toast";
+    if (type === "error") toast.classList.add("error");
+
+    var icon = document.createElement("i");
+    icon.className = (type === "error") ? "fa-solid fa-circle-exclamation" : "fa-solid fa-circle-check";
+
+    var text = document.createElement("span");
+    text.textContent = message;
+
+    toast.appendChild(icon);
+    toast.appendChild(text);
     wrap.appendChild(toast);
 
+    // sau 2,8 giây thì mờ dần rồi xóa
     setTimeout(function () {
         toast.classList.add("hide");
-        setTimeout(function () { toast.remove(); }, 350);
+        setTimeout(function () {
+            toast.remove();
+        }, 350);
     }, 2800);
 }
 
-/* ------------------------- SỰ KIỆN ------------------------- */
+/* ---------- Sự kiện ---------- */
+
+// Đưa tất cả bộ lọc về mặc định
 function resetFilters() {
     state.category = "all";
     state.price = "all";
     state.sort = "default";
     state.keyword = "";
-    state.page = 1;
 
-    document.querySelectorAll("#category-menu .link").forEach(function (l) {
-        l.classList.toggle("active", l.getAttribute("data-category") === "all");
+    document.querySelectorAll("#category-menu .link").forEach(function (link) {
+        link.classList.toggle("active", link.getAttribute("data-category") === "all");
     });
     document.querySelector("input[name='price'][value='all']").checked = true;
     document.getElementById("sort-select").value = "default";
     document.getElementById("search-input").value = "";
-    renderProducts();
+    applyFilters();
 }
 
 function bindEvents() {
-    // --- Lọc danh mục ---
+    // lọc theo danh mục
     var links = document.querySelectorAll("#category-menu .link");
     links.forEach(function (link) {
         link.addEventListener("click", function (e) {
             e.preventDefault();
             links.forEach(function (l) { l.classList.remove("active"); });
-            this.classList.add("active");
-            state.category = this.getAttribute("data-category");
-            state.page = 1;
-            renderProducts();
+            link.classList.add("active");
+            state.category = link.getAttribute("data-category");
+            applyFilters();
         });
     });
 
-    // --- Lọc giá ---
+    // lọc theo giá
     document.querySelectorAll("input[name='price']").forEach(function (radio) {
         radio.addEventListener("change", function () {
-            state.price = this.value;
-            state.page = 1;
-            renderProducts();
+            state.price = radio.value;
+            applyFilters();
         });
     });
 
-    // --- Sắp xếp ---
+    // sắp xếp
     document.getElementById("sort-select").addEventListener("change", function () {
         state.sort = this.value;
-        state.page = 1;
-        renderProducts();
+        applyFilters();
     });
 
-    // --- Tìm kiếm: không cho gửi form rỗng ---
+    // ô tìm kiếm: để trống thì không cho gửi
     document.getElementById("search-form").addEventListener("submit", function (e) {
         var input = document.getElementById("search-input");
         if (input.value.trim() === "") {
@@ -381,77 +286,79 @@ function bindEvents() {
         }
     });
 
-    // --- Phân trang ---
-    document.getElementById("pagination").addEventListener("click", function (e) {
-        var btn = e.target.closest(".page-btn");
-        if (!btn || btn.disabled) return;
-        state.page = Number(btn.getAttribute("data-page"));
-        renderProducts();
-        document.querySelector(".toolbar").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    // nút "Xóa bộ lọc"
+    document.getElementById("btn-reset").addEventListener("click", resetFilters);
 
-    // --- Sự kiện trong lưới sản phẩm (event delegation) ---
+    // các nút bên trong thẻ sản phẩm (gắn 1 lần cho cả lưới)
     document.getElementById("product-grid").addEventListener("click", function (e) {
         var card = e.target.closest(".product-card");
-
-        if (e.target.closest("#btn-reset")) { resetFilters(); return; }
         if (!card) return;
 
-        // Chọn size
         var sizeBtn = e.target.closest(".size-btn");
         if (sizeBtn) {
             card.querySelectorAll(".size-btn").forEach(function (b) { b.classList.remove("selected"); });
             sizeBtn.classList.add("selected");
             return;
         }
-        // Chọn màu
+
         var colorBtn = e.target.closest(".color-dot");
         if (colorBtn) {
             card.querySelectorAll(".color-dot").forEach(function (b) { b.classList.remove("selected"); });
             colorBtn.classList.add("selected");
             return;
         }
-        // Yêu thích
+
         var wishBtn = e.target.closest(".btn-wish");
-        if (wishBtn) { toggleWish(card.getAttribute("data-id"), wishBtn); return; }
+        if (wishBtn) {
+            toggleWish(card.getAttribute("data-id"), wishBtn);
+            return;
+        }
 
-        // Thêm vào giỏ
-        if (e.target.closest(".btn-add")) { addToCart(card); return; }
+        if (e.target.closest(".btn-add")) {
+            addToCart(card);
+            return;
+        }
 
-        // Mua ngay: thêm xong chuyển sang trang giỏ hàng
+        // mua ngay: thêm vào giỏ rồi chuyển sang trang giỏ hàng
         if (e.target.closest(".btn-buy")) {
             if (addToCart(card)) {
-                setTimeout(function () { window.location.href = "giohang.html"; }, 700);
+                setTimeout(function () {
+                    window.location.href = "giohang.html";
+                }, 700);
             }
         }
     });
 
-    // --- Nút về đầu trang ---
+    // nút về đầu trang: cuộn xuống quá 400px thì hiện
     var backTop = document.querySelector(".back-to-top");
     window.addEventListener("scroll", function () {
         backTop.classList.toggle("show", window.scrollY > 400);
     });
 }
 
-/* ------------------------- KHỞI CHẠY ------------------------- */
+/* ---------- Chạy khi tải trang ---------- */
+
 document.addEventListener("DOMContentLoaded", function () {
-    // Đọc từ khóa ?q= từ thanh địa chỉ (từ ô tìm kiếm ở header)
-    var q = new URLSearchParams(window.location.search).get("q");
+    var params = new URLSearchParams(window.location.search);
+
+    // từ khóa tìm kiếm: sanpham.html?q=...
+    var q = params.get("q");
     if (q && q.trim() !== "") {
         state.keyword = q.trim();
         document.getElementById("search-input").value = state.keyword;
     }
 
-    // Đọc danh mục ?cat= (ví dụ từ trang chủ: sanpham.html?cat=dam)
-    var cat = new URLSearchParams(window.location.search).get("cat");
+    // danh mục từ trang chủ: sanpham.html?cat=dam
+    var cat = params.get("cat");
     if (cat && document.querySelector("#category-menu [data-category='" + cat + "']")) {
         state.category = cat;
-        document.querySelectorAll("#category-menu .link").forEach(function (l) {
-            l.classList.toggle("active", l.getAttribute("data-category") === cat);
+        document.querySelectorAll("#category-menu .link").forEach(function (link) {
+            link.classList.toggle("active", link.getAttribute("data-category") === cat);
         });
     }
 
     bindEvents();
-    renderProducts();
+    loadWishlist();
+    applyFilters();
     updateCartBadge();
 });
