@@ -5,7 +5,7 @@
    giỏ hàng, yêu thích, thông báo, nút về đầu trang.
    ========================================================== */
 
-var CART_KEY = "mm_cart";      // key giỏ hàng trong localStorage
+var CART_KEY = "maison_cart";      // key giỏ hàng trong localStorage
 var WISH_KEY = "mm_wishlist";  // key danh sách yêu thích
 var MAX_QTY = 20;              // số lượng tối đa của 1 dòng trong giỏ
 
@@ -124,7 +124,7 @@ function saveCart(cart) {
 function updateCartBadge() {
     var total = 0;
     getCart().forEach(function (item) {
-        total += item.qty;
+        total += item.quantity;
     });
     document.querySelectorAll(".cart-badge").forEach(function (badge) {
         badge.textContent = total;
@@ -136,7 +136,9 @@ function addToCart(card) {
     var id = card.getAttribute("data-id");
     var name = card.querySelector(".product-title").textContent;
     var qty = parseInt(card.querySelector(".quantity-input").value, 10);
-
+    var priceText = card.querySelector(".price-new").textContent;
+    var price = parseInt(priceText.replace(/\D/g, ""), 10);
+    var image = card.querySelector(".product-thumb img").getAttribute("src");
     if (isNaN(qty) || qty <= 0) {
         showToast("Số lượng không hợp lệ, vui lòng nhập lại!", "error");
         return false;
@@ -152,9 +154,9 @@ function addToCart(card) {
         return item.id === id && item.size === size && item.color === color;
     });
     if (found) {
-        found.qty = Math.min(found.qty + qty, MAX_QTY);
+        found.quantity = Math.min(found.quantity + qty, MAX_QTY);
     } else {
-        cart.push({ id: id, size: size, color: color, qty: qty });
+        cart.push({ id: id, name: name, price: price, image: image, color: color, size: size, quantity: qty, checked: true });
     }
 
     saveCart(cart);

@@ -223,7 +223,7 @@ button, select, input { font-family: inherit; }
 .banner-img {
   position: relative;
   width: 100%;
-  height: 800px;
+  aspect-ratio: 3/1;
   overflow: hidden;
 }
 .banner-img img {
@@ -473,13 +473,13 @@ button, select, input { font-family: inherit; }
 }
 
 /* ----------------------- RESPONSIVE -------------------------- */
-@media (max-width: 768px){
+@media screen and (max-width: 768px){
     .banner-img {height: 280px; }
 }
-@media (max-width: 576px){
+@media screen and (max-width: 576px){
     .banner-img {height: 200px; }
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .danhmucsp {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: none;
@@ -487,14 +487,14 @@ button, select, input { font-family: inherit; }
         margin: 20px auto;
     }
 }
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
     .danhmucsp {
         grid-template-columns: repeat(1, 1fr);
         grid-auto-rows: 180px;
         gap: 16px;
     }
 }
-@media (max-width: 768px){
+@media screen and (max-width: 768px){
     .gioithieungan-section {
         flex-direction: column;
         margin: 14;
@@ -513,14 +513,41 @@ button, select, input { font-family: inherit; }
         margin: 12px 0 16px;
     }
 }
-@media (max-width: 576px){
+@media screen and (max-width: 576px){
     .gioithieungan-img {
         height: 420px;
     }
 }
-@media (hover: none){
+@media screen and (hover: none){
     .chitietgt {
         max-height: 360px;
         opacity: 1;
     }
+}
+@media (max-width: 992px) {
+    .menu-btn { display: block; order: 1; }
+    .header-logo { order: 2; }
+    .header-actions { order: 3; }
+    .user-buttons { display: none; }
+    .mobile-auth { display: block; }
+
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-ink);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+    }
+
+    .main-nav .nav-list { flex-direction: column; padding: 10px 0; gap: 0; }
+    .nav-item { width: 100%; text-align: center; }
+    .nav-link { display: block; padding: 13px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+    .nav-link::after { display: none; }
+
+    .menu-checkbox:checked ~ .main-nav { max-height: 380px; }
+    .menu-checkbox:checked ~ .menu-btn .icon-open { display: none; }
+    .menu-checkbox:checked ~ .menu-btn .icon-close { display: inline-block; }
 }

@@ -69,6 +69,9 @@ const showLogin = () => {
 };
 
 window.showRegister = showRegister;
+if (window.location.hash === "#dangky") {
+    showRegister();
+}
 window.showLogin = showLogin;
 
 const eyeIcons = document.querySelectorAll(".eye-icon");
@@ -174,7 +177,6 @@ registerForm.addEventListener("submit", (event) => {
 
 });
 
-
 loginForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -203,11 +205,11 @@ loginForm.addEventListener("submit", (event) => {
         return;
     }
 
-    localStorage.setItem("currentUser", JSON.stringify(user));
-
+    sessionStorage.setItem("currentUser", JSON.stringify(user));
+    sessionStorage.setItem("currentUserName", user.fullname);  
     showSuccess("Đăng nhập thành công!");
 
-    window.location.href = "trangchu_signin.html";
+    window.location.href = "trangchu.html";
 
 });
 

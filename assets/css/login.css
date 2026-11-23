@@ -1,135 +1,327 @@
-*{
+
+:root {
+    --color-ink: #1c1c1c;
+    --color-cream: #faf7f2;
+    --color-accent: #9c6b3f;
+    --color-accent-dark: #7d5330;
+    --color-border: #e3ddd3;
+    --color-muted: #7a736b;
+    --radius: 10px;
+    --shadow: 0 10px 30px rgba(28, 28, 28, 0.08);
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #e8ecf5;
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    line-height: 1.5;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+}
+
+button, input { font-family: inherit; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
 }
 
 .container {
     width: 100%;
+    padding: 24px 14px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
+}
+
+.form-logo img {
+    display: block;
+    height: 40px;
+    width: auto;
 }
 
 .form-container {
-    width: 400px;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background-color: #fff;
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-accent);  
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 26px 18px;
+    overflow: hidden;
+    animation: fadeUp 0.45s ease both;
+}
+
+.form-container::before,
+.form-container::after {
+    display: none;
 }
 
 .form-header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 26px;
 }
 
 .form-header p {
-    color: gray;
-    margin-bottom: 10px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-muted);
+    margin-bottom: 6px;
 }
 
 .form-header h1 {
-    font-size: 28px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.form-header h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+    margin: 10px auto 0;
 }
 
 .input-group {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .input-field {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 13px 42px 13px 14px;   
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    background-color: #fff;
+    color: var(--color-ink);
+    font-size: 0.9rem;
     outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .input-field:focus {
-    border-color: blue;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(156, 107, 63, 0.12);
 }
 
 .floating-label {
     position: absolute;
-    left: 12px;
-    top: 12px;
-    color: gray;
+    left: 10px;
+    top: 13px;
+    padding: 0 5px;
+    font-size: 0.86rem;
+    color: var(--color-muted);
     pointer-events: none;
+    transition: all 0.2s ease;
 }
 
 .input-field:focus ~ .floating-label,
 .input-field:not(:placeholder-shown) ~ .floating-label {
-    top: -8px;
-    font-size: 12px;
-    background-color: white;
+    top: -9px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background-color: #fff;
 }
 
+.eye-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    cursor: pointer;
+    opacity: 0.55;
+    user-select: none;
+    transition: opacity 0.25s ease;
+}
+
+.eye-icon:hover { opacity: 1; }
+
+/* Ghi nhớ + quên mật khẩu */
 .checkbox-group {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 13px;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.checkbox-field {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
 }
 
 .form-link {
-    color: #9c6b3f;
+    color: var(--color-accent);
+    font-weight: 600;
     text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.form-link:hover {
+    color: var(--color-accent-dark);
+    text-decoration: underline;
 }
 
 .form-btn--submit {
     width: 100%;
-    padding: 12px;
-    background-color: #9c6b3f;
-    color: white;
+    margin-top: 4px;
+    padding: 13px 16px;
+    background-color: var(--color-ink);
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.form-btn--submit:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/* Dòng "Or" có 2 đường kẻ hai bên */
 .form-divider {
-    text-align: center;
-    margin: 20px 0;
-    color: gray;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-muted);
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
 }
 
 .form-socials {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
 .form-btn--social {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
     cursor: pointer;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.form-btn--social:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-cream);
 }
 
 .btn-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 .form-bottom {
     text-align: center;
-    font-size: 13px;
+    font-size: 0.84rem;
+    color: var(--color-muted);
 }
 
-.eye-icon
-{
-    position: absolute;
-    right: 15px;
-    display: flex;
-    top: 50%;
-    transform: translateY(-50%);
+/* RESPONSIVE*/
+
+
+@media screen and (min-width: 481px) {
+    .container { padding: 36px 20px; }
+    .form-logo img { height: 46px; }
+    .form-container { padding: 34px 32px; }
+    .form-header h1 { font-size: 1.9rem; }
+    .checkbox-group { font-size: 0.82rem; }
+}
+
+@media screen and (min-width: 769px) {
+    .container { gap: 26px; }
+    .form-container { max-width: 460px; padding: 38px 40px; }
+}
+
+
+@media screen and (min-width: 1025px) {
+    .form-container {
+        max-width: 900px;
+        padding: 44px 52px 40px 472px;  
+    }
+
+    .form-container::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 420px;
+        background-image:
+            linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.05) 60%),
+            url("../images/gioithieungan1.png");
+        background-size: cover;
+        background-position: center top;
+    }
+
+    .form-container::after {
+        content: "Tôn nét riêng, định phong cách";
+        display: block;
+        position: absolute;
+        left: 34px;
+        bottom: 34px;
+        width: 352px;
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: 1.8rem;
+        line-height: 1.25;
+        color: var(--color-cream);
+    }
+}
+
+@media screen and (min-width: 1441px) {
+    .form-container { max-width: 980px; padding-left: 520px; }
+    .form-container::before { width: 460px; }
+    .form-container::after { width: 392px; font-size: 2rem; }
 }

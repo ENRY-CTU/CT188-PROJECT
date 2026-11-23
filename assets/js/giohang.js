@@ -76,9 +76,8 @@ function createCartRow(item, index) {
     article.appendChild(checkbox);
 
     // 2. Anh san pham
-    const thumbLink = document.createElement("a");
+    const thumbLink = document.createElement("div");
     thumbLink.className = "item-thumb";
-    thumbLink.href = `chitiet.html?id=${encodeURIComponent(item.id)}`;
 
     if (item.image) {
         const img = document.createElement("img");
@@ -95,10 +94,7 @@ function createCartRow(item, index) {
 
     const titleEl = document.createElement("h2");
     titleEl.className = "item-name";
-    const titleLink = document.createElement("a");
-    titleLink.href = `chitiet.html?id=${encodeURIComponent(item.id)}`;
-    titleLink.textContent = item.name;
-    titleEl.appendChild(titleLink);
+    titleEl.textContent = item.name;
     details.appendChild(titleEl);
 
     const variants = document.createElement("div");
@@ -332,11 +328,10 @@ function bindEvents() {
                 alert("Bạn chưa chọn sản phẩm nào để thanh toán.");
                 return;
             }
-            alert(`Xác nhận ${selected.length} sản phẩm cho bước thanh toán.`);
+            window.location.href = "thanhtoan.html";
         });
     }
 }
-
 document.addEventListener("DOMContentLoaded", () => {
     loadCartFromStorage();
     bindEvents();
