@@ -8,67 +8,64 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/sanpham.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/sanpham.css">
     <link rel="stylesheet" href="giohang.css">
 </head>
 <body>
     <header class="main-header">
-       <div class="header-container">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="trangchu.html" title="Maison Mode - Trang chủ">
+                    <img src="assets/images/logo.png" alt="Maison Mode - Thời trang nữ">
+                </a>
+            </div>
 
-        <!-- Logo -->
-        <div class="header-logo">
-            <a href="trangchu.html" title="Maison Mode - Trang chủ">
-                <img src="/assets/images/logo.png" alt="Maison Mode - Thời trang nữ">
-            </a>
-        </div>
+            <input id="menu-toggle" class="menu-checkbox" type="checkbox">
+            <label class="menu-btn" for="menu-toggle" title="Mở menu">
+                <i class="fa-solid fa-bars icon-open"></i>
+                <i class="fa-solid fa-xmark icon-close"></i>
+            </label>
 
-        <!-- Nút menu cho màn hình nhỏ -->
-        <input id="menu-toggle" class="menu-checkbox" type="checkbox">
-        <label class="menu-btn" for="menu-toggle" title="Mở menu">
-            <i class="fa-solid fa-bars icon-open"></i>
-            <i class="fa-solid fa-xmark icon-close"></i>
-        </label>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="giohang.html">Giỏ Hàng</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
+                </ul>
+            </nav>
 
-        <!-- Menu điều hướng -->
-        <nav class="main-nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
-                <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
-                <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
-                <li class="nav-item"><a class="nav-link active" href="giohang.html">Giỏ Hàng</a></li>
-                <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
-                <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
-            </ul>
-        </nav>
-
-        <!-- Tìm kiếm, giỏ hàng, đăng nhập -->
-        <div class="header-actions">
-            <div class="search-box">
-                <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <form id="search-form" class="search-form" action="sanpham.html" method="GET">
-                    <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
-                    <button class="btn-search-submit" type="submit" title="Tìm">
-                        <i class="fa-solid fa-arrow-right"></i>
+            <div class="header-actions">
+                <div class="search-box">
+                    <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                </form>
-            </div>
+                    <form id="search-form" class="search-form" action="sanpham.html" method="GET">
+                        <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
+                        <button class="btn-search-submit" type="submit" title="Tìm">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
 
-            <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge">0</span>
-            </a>
+                <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
 
-            <div class="user-buttons">
-                <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
-                <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                <div class="user-buttons">
+                    <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
+                    <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                </div>
             </div>
         </div>
-
-       </div>
     </header>
+
     <main class="cart-page">
         <nav class="breadcrumb" aria-label="breadcrumb">
             <a href="trangchu.html"><i class="fa-solid fa-house"></i> Trang chủ</a>
@@ -81,12 +78,12 @@
 
             <div class="cart-empty" id="cart-empty" style="display: none;">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <p>Giỏ hàng của bạn hiện đang trống.</p>
+                <h2>Giỏ hàng trống</h2>
+                <p>Giỏ hàng của bạn hiện đang trống. Hãy chọn thêm sản phẩm yêu thích nhé.</p>
                 <a href="sanpham.html" class="btn-primary-dark">Tiếp tục mua sắm</a>
             </div>
 
             <div class="cart-layout" id="cart-layout">
-            
                 <div class="cart-items-box">
                     <div class="cart-table-header">
                         <label class="check-all">
@@ -97,39 +94,7 @@
                         </button>
                     </div>
 
-                    <div class="cart-list" id="cart-list">
-                        <!-- Mẫu 1 dòng sản phẩm -->
-                        <article class="cart-item" data-id="sp001">
-                            <input type="checkbox" class="item-check" checked>
-                            <a href="chitiet.html?id=sp001" class="item-thumb">
-                                <img src="assets/images/sanpham/artboard_3_copy_2_a99a62e2ad464f4aba4d55a4889f3abe.webp" alt="Áo sơ mi lụa cổ nơ thanh lịch">
-                            </a>
-                            <div class="item-details">
-                                <h2 class="item-name"><a href="chitiet.html?id=sp001">Áo sơ mi lụa cổ nơ thanh lịch</a></h2>
-                                <div class="item-variants">
-                                    <span>Màu: <b>Trắng</b></span>
-                                    <label>Size:
-                                        <select class="item-size-select">
-                                            <option value="S">S</option>
-                                            <option value="M" selected>M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <p class="item-unit-price">590.000đ</p>
-                            </div>
-                            <div class="item-qty">
-                                <button type="button" class="qty-btn btn-minus" aria-label="Giảm">-</button>
-                                <input type="number" class="qty-input" value="1" min="1" max="20">
-                                <button type="button" class="qty-btn btn-plus" aria-label="Tăng">+</button>
-                            </div>
-                            <div class="item-subtotal">590.000đ</div>
-                            <button type="button" class="btn-remove-item" title="Xóa sản phẩm">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                        </article>
-                    </div>
+                    <div class="cart-list" id="cart-list"></div>
 
                     <div class="cart-footer-actions">
                         <a href="sanpham.html" class="btn-continue"><i class="fa-solid fa-arrow-left"></i> Tiếp tục xem sản phẩm</a>
@@ -140,14 +105,14 @@
                     <h3>Tóm tắt đơn hàng</h3>
 
                     <div class="coupon-box">
-                        <input type="text" id="coupon-input" placeholder="Nhập mã giảm giá (VD: MAISON10)">
-                        <button type="button" id="btn-apply-coupon">Áp dụng</button>
+                        <input type="text" id="coupon-input" class="coupon-input" placeholder="Nhập mã giảm giá (VD: MAISON10)">
+                        <button type="button" id="btn-apply-coupon" class="btn-apply-coupon">Áp dụng</button>
                     </div>
 
                     <div class="summary-rows">
                         <div class="summary-row">
                             <span>Tạm tính</span>
-                            <b id="subtotal-price">590.000đ</b>
+                            <b id="subtotal-price">0đ</b>
                         </div>
                         <div class="summary-row">
                             <span>Giảm giá</span>
@@ -155,7 +120,7 @@
                         </div>
                         <div class="summary-row">
                             <span>Phí vận chuyển</span>
-                            <b id="shipping-price">30.000đ</b>
+                            <b id="shipping-price">0đ</b>
                         </div>
                         <p class="freeship-note" id="freeship-note">
                             <i class="fa-solid fa-truck-fast"></i> Miễn phí vận chuyển cho đơn từ <b>1.000.000đ</b>
@@ -164,7 +129,7 @@
 
                     <div class="summary-total">
                         <span>Tổng thanh toán</span>
-                        <strong id="final-total">620.000đ</strong>
+                        <strong id="final-total">0đ</strong>
                     </div>
 
                     <button type="button" class="btn-checkout" id="btn-checkout">
@@ -175,6 +140,6 @@
         </div>
     </main>
 
-    <script src="/assets/js/giohang.js"></script>
+    <script src="assets/js/giohang.js"></script>
 </body>
 </html>
