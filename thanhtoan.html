@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thanh toán đơn hàng thời trang nữ Maison Mode.">
+    <title>Thanh Toán | Maison Mode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="thanhtoan.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="trangchu.html" title="Maison Mode - Trang chủ">
+                    <img src="assets/images/logo.png" alt="Maison Mode - Thời trang nữ">
+                </a>
+            </div>
+
+            <input id="menu-toggle" class="menu-checkbox" type="checkbox">
+            <label class="menu-btn" for="menu-toggle" title="Mở menu">
+                <i class="fa-solid fa-bars icon-open"></i>
+                <i class="fa-solid fa-xmark icon-close"></i>
+            </label>
+
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="giohang.html">Giỏ Hàng</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
+                </ul>
+            </nav>
+
+            <!-- Tìm kiếm, giỏ hàng, đăng nhập -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <form id="search-form" class="search-form" action="sanpham.html" method="GET">
+                        <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
+                        <button class="btn-search-submit" type="submit" title="Tìm">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+
+                <div class="user-buttons">
+                    <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
+                    <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    
+    <main class="checkout-page">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <a href="trangchu.html"><i class="fa-solid fa-house"></i> Trang chủ</a>
+            <i class="fa-solid fa-angle-right"></i>
+            <a href="giohang.html">Giỏ hàng</a>
+            <i class="fa-solid fa-angle-right"></i>
+            <span>Thanh toán</span>
+        </nav>
+
+        <div class="checkout-container">
+            <h1 class="section-title">Thanh Toán Đơn Hàng</h1>
+
+            <!-- Khi không có sản phẩm nào được chọn -->
+            <div class="checkout-empty" id="checkout-empty" style="display: none;">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <h2>Chưa có sản phẩm để thanh toán</h2>
+                <p>Vui lòng chọn sản phẩm trong giỏ hàng trước khi chuyển sang bước thanh toán.</p>
+                <a href="giohang.html" class="btn-back-cart">Quay lại giỏ hàng</a>
+            </div>
+
+            <!-- Bố cục 2 cột -->
+            <form class="checkout-layout" id="checkout-form" novalidate>
+                <!-- Cột trái: Thông tin nhận hàng & phương thức thanh toán -->
+                <div class="checkout-info-box">
+                    <h3>Thông tin giao hàng</h3>
+
+                    <div class="form-group">
+                        <label for="customer-name">Họ và tên <span class="required">*</span></label>
+                        <input type="text" id="customer-name" name="name" placeholder="Ví dụ: Nguyễn Minh Anh" required>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="customer-phone">Số điện thoại <span class="required">*</span></label>
+                            <input type="tel" id="customer-phone" name="phone" placeholder="Ví dụ: 0912345678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-email">Email</label>
+                            <input type="email" id="customer-email" name="email" placeholder="minhanh@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="customer-city">Tỉnh / Thành phố <span class="required">*</span></label>
+                            <select id="customer-city" name="city" required>
+                                <option value="">-- Chọn Tỉnh / Thành phố --</option>
+                                <option value="TP. Cần Thơ">TP. Cần Thơ</option>
+                                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                <option value="TP. Hà Nội">TP. Hà Nội</option>
+                                <option value="TP. Đà Nẵng">TP. Đà Nẵng</option>
+                                <option value="An Giang">An Giang</option>
+                                <option value="Vĩnh Long">Vĩnh Long</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-district">Quận / Huyện <span class="required">*</span></label>
+                            <input type="text" id="customer-district" name="district" placeholder="Ví dụ: Ninh Kiều" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-address">Địa chỉ cụ thể <span class="required">*</span></label>
+                        <input type="text" id="customer-address" name="address" placeholder="Số nhà, tên đường, phường/xã..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order-note">Ghi chú đơn hàng</label>
+                        <textarea id="order-note" name="note" rows="3" placeholder="Thời gian giao hàng mong muốn, lưu ý gói quà..."></textarea>
+                    </div>
+
+                    <h3 class="mt-24">Phương thức thanh toán</h3>
+
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <span class="payment-label">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                                <span>
+                                    <b>Thanh toán khi nhận hàng (COD)</b>
+                                    <small>Kiểm tra hàng trước khi thanh toán cho shipper.</small>
+                                </span>
+                            </span>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="bank">
+                            <span class="payment-label">
+                                <i class="fa-solid fa-building-columns"></i>
+                                <span>
+                                    <b>Chuyển khoản ngân hàng</b>
+                                    <small>Chuyển khoản qua QR / số tài khoản Maison Mode.</small>
+                                </span>
+                            </span>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="ewallet">
+                            <span class="payment-label">
+                                <i class="fa-solid fa-wallet"></i>
+                                <span>
+                                    <b>Ví điện tử (MoMo / ZaloPay)</b>
+                                    <small>Thanh toán nhanh qua ví điện tử trên điện thoại.</small>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <p class="form-error" id="form-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Cột phải: Sản phẩm đã chọn & tổng kết đơn -->
+                <aside class="checkout-summary-box">
+                    <h3>Đơn hàng của bạn (<span id="order-item-count">0</span>)</h3>
+
+                    <div class="order-items-list" id="order-items-list"></div>
+
+                    <div class="summary-rows">
+                        <div class="summary-row">
+                            <span>Tạm tính</span>
+                            <b id="checkout-subtotal">0đ</b>
+                        </div>
+                        <div class="summary-row">
+                            <span>Giảm giá</span>
+                            <b id="checkout-discount">-0đ</b>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển</span>
+                            <b id="checkout-shipping">0đ</b>
+                        </div>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Tổng thanh toán</span>
+                        <strong id="checkout-total">0đ</strong>
+                    </div>
+
+                    <button type="submit" class="btn-place-order" id="btn-place-order">
+                        Đặt Hàng Ngay
+                    </button>
+
+                    <a href="giohang.html" class="btn-back-link">
+                        <i class="fa-solid fa-arrow-left"></i> Quay lại chỉnh sửa giỏ hàng
+                    </a>
+                </aside>
+            </form>
+
+            <!-- Hộp xác nhận đặt hàng thành công -->
+            <div class="order-success-box" id="order-success-box" style="display: none;">
+                <i class="fa-solid fa-circle-check"></i>
+                <h2>Đặt Hàng Thành Công</h2>
+                <p>Mã đơn hàng của bạn là <b id="success-order-code">MM-000000</b>. Maison Mode sẽ liên hệ xác nhận trong thời gian sớm nhất.</p>
+                <div class="success-actions">
+                    <a href="sanpham.html" class="btn-place-order">Tiếp tục mua sắm</a>
+                    <a href="trangchu.html" class="btn-outline-dark">Về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="thanhtoan.js"></script>
+</body>
+</html>
