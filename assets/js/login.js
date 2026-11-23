@@ -69,6 +69,9 @@ const showLogin = () => {
 };
 
 window.showRegister = showRegister;
+if (window.location.hash === "#dangky") {
+    showRegister();
+}
 window.showLogin = showLogin;
 
 const eyeIcons = document.querySelectorAll(".eye-icon");

@@ -328,11 +328,10 @@ function bindEvents() {
                 alert("Bạn chưa chọn sản phẩm nào để thanh toán.");
                 return;
             }
-            alert(`Xác nhận ${selected.length} sản phẩm cho bước thanh toán.`);
+            window.location.href = "thanhtoan.html";
         });
     }
 }
-
 document.addEventListener("DOMContentLoaded", () => {
     loadCartFromStorage();
     bindEvents();
