@@ -3,6 +3,7 @@
 // =========================================================
 
 const CART_STORAGE_KEY = "maison_cart";
+const COUPON_KEY = "maison_coupon"
 const ORDER_STORAGE_KEY = "maison_orders";
 const FREE_SHIP_THRESHOLD = 1000000;
 const SHIPPING_FEE = 30000;
@@ -25,6 +26,21 @@ function loadSelectedCartItems() {
         allCartItems = [];
         selectedItems = [];
     }
+}
+
+function calcDiscount(subtotal) {
+    let coupon = null;
+    try {
+        coupon = JSON.parse(localStorage.getItem(COUPON_KEY));
+    } catch (err) {
+        coupon = null;
+    }
+    if (!coupon || !(coupon.value > 0) || subtotal <= 0) return 0;
+    if (coupon.value < 1) return Math.round(subtotal * coupon.value);
+    return Math.min(coupon.value, subtotal);
+}
+function calcShipping(afterDiscount) {
+    return afterDiscount > 0 && afterDiscount < FREE_SHIP_THRESHOLD ? SHIPPING_FEE : 0;
 }
 
 function createOrderItemRow(item) {
@@ -100,10 +116,10 @@ function renderCheckoutSummary() {
             listEl.appendChild(createOrderItemRow(item));
         });
 
-        const discount = 0;
-        const shippingFee = subtotal >= FREE_SHIP_THRESHOLD ? 0 : SHIPPING_FEE;
-        const finalTotal = Math.max(0, subtotal - discount) + shippingFee;
-
+        const discount = calcDiscount(subtotal);
+        const afterDiscount = subtotal - discount;
+        const shippingFee = calcShipping(afterDiscount);
+        const finalTotal = afterDiscount + shippingFee;
         if (countEl) countEl.textContent = String(totalQty);
         if (subtotalEl) subtotalEl.textContent = formatVND(subtotal);
         if (discountEl) discountEl.textContent = "-" + formatVND(discount);
@@ -167,18 +183,20 @@ function bindCheckoutForm() {
             }
             return;
         }
-
-        if (errorEl) {
-            errorEl.textContent = "";
-        }
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+            if (errorEl) {
+                rrorEl.textContent = "Email chưa đúng định dạng (ví dụ: minhanh@example.com).";
+            }
+    }
 
         let subtotal = 0;
         selectedItems.forEach((item) => {
             const qty = Math.max(1, Number(item.quantity) || 1);
             subtotal += (Number(item.price) || 0) * qty;
         });
-        const shippingFee = subtotal >= FREE_SHIP_THRESHOLD ? 0 : SHIPPING_FEE;
-        const totalAmount = subtotal + shippingFee;
+        const discount = calcDiscount(subtotal);
+        const shippingFee = calcShipping(subtotal - discount);
+        const totalAmount = subtotal - discount + shippingFee;
         const orderCode = "MM-" + String(Date.now()).slice(-6);
 
         saveCompletedOrder({
@@ -187,9 +205,11 @@ function bindCheckoutForm() {
             customer: { name, phone: phoneClean, email, city, district, address, note },
             paymentMethod,
             items: selectedItems,
+            discount,
+            shippingFee,
             totalAmount
         });
-
+        localStorage.removeItem(COUPON_KEY);
         allCartItems = allCartItems.filter((item) => item.checked === false);
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(allCartItems));
         capNhatIconGioHang();
