@@ -27,17 +27,6 @@ function loadSelectedCartItems() {
     }
 }
 
-function updateHeaderBadge() {
-    const badge = document.querySelector(".cart-badge");
-    if (!badge) return;
-
-    let totalQty = 0;
-    for (let i = 0; i < allCartItems.length; i++) {
-        totalQty += Math.max(1, Number(allCartItems[i].quantity) || 1);
-    }
-    badge.textContent = String(totalQty);
-}
-
 function createOrderItemRow(item) {
     const row = document.createElement("div");
     row.className = "order-item-row";
@@ -87,7 +76,7 @@ function renderCheckoutSummary() {
     const shippingEl = document.getElementById("checkout-shipping");
     const totalEl = document.getElementById("checkout-total");
 
-    updateHeaderBadge();
+    capNhatIconGioHang();
 
     if (selectedItems.length === 0) {
         if (emptyBox) emptyBox.style.display = "block";
@@ -203,7 +192,7 @@ function bindCheckoutForm() {
 
         allCartItems = allCartItems.filter((item) => item.checked === false);
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(allCartItems));
-        updateHeaderBadge();
+        capNhatIconGioHang();
 
         formEl.style.display = "none";
         if (codeEl) codeEl.textContent = orderCode;

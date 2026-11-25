@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/sanpham.css">
-    <link rel="stylesheet" href="/assets/css/giohang.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/sanpham.css">
+    <link rel="stylesheet" href="assets/css/giohang.css">
 </head>
 <body>
     <header class="main-header">
@@ -19,7 +19,7 @@
         <!-- Logo -->
         <div class="header-logo">
             <a href="trangchu.html" title="Maison Mode - Trang chủ">
-                <img src="/assets/images/logo.png" alt="Maison Mode - Thời trang nữ">
+                <img src="assets/images/logo.png" alt="Maison Mode - Thời trang nữ">
             </a>
         </div>
 
@@ -97,39 +97,7 @@
                         </button>
                     </div>
 
-                    <div class="cart-list" id="cart-list">
-                        <!-- Mẫu 1 dòng sản phẩm -->
-                        <article class="cart-item" data-id="sp001">
-                            <input type="checkbox" class="item-check" checked>
-                            <div class="item-thumb">
-                                <img src="assets/images/sanpham/artboard_3_copy_2_a99a62e2ad464f4aba4d55a4889f3abe.webp" alt="Áo sơ mi lụa cổ nơ thanh lịch">
-                            </div>
-                            <div class="item-details">
-                                <h2 class="item-name">Áo sơ mi lụa cổ nơ thanh lịch</h2>
-                                <div class="item-variants">
-                                    <span>Màu: <b>Trắng</b></span>
-                                    <label>Size:
-                                        <select class="item-size-select">
-                                            <option value="S">S</option>
-                                            <option value="M" selected>M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <p class="item-unit-price">590.000đ</p>
-                            </div>
-                            <div class="item-qty">
-                                <button type="button" class="qty-btn btn-minus" aria-label="Giảm">-</button>
-                                <input type="number" class="qty-input" value="1" min="1" max="20">
-                                <button type="button" class="qty-btn btn-plus" aria-label="Tăng">+</button>
-                            </div>
-                            <div class="item-subtotal">590.000đ</div>
-                            <button type="button" class="btn-remove-item" title="Xóa sản phẩm">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                        </article>
-                    </div>
+                    <div class="cart-list" id="cart-list"></div>
 
                     <div class="cart-footer-actions">
                         <a href="sanpham.html" class="btn-continue"><i class="fa-solid fa-arrow-left"></i> Tiếp tục xem sản phẩm</a>
@@ -140,8 +108,8 @@
                     <h3>Tóm tắt đơn hàng</h3>
 
                     <div class="coupon-box">
-                        <input type="text" id="coupon-input" placeholder="Nhập mã giảm giá (VD: MAISON10)">
-                        <button type="button" id="btn-apply-coupon">Áp dụng</button>
+                        <input type="text" id="coupon-input" class="coupon-input" placeholder="Nhập mã giảm giá (VD: MAISON10)">
+                        <button type="button" id="btn-apply-coupon" class="btn-apply-coupon">Áp dụng</button>
                     </div>
 
                     <div class="summary-rows">
@@ -230,9 +198,9 @@
 
     <!-- Nút về đầu trang -->
     <a href="#" class="back-to-top" title="Về đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
-
-    <script src="/assets/js/vetrangdau.js"></script>
-    <script src="/assets/js/giohang.js"></script>
-    <script src="/assets/js/auth.js"></script>
+    <script src="assets/js/icon-cart-update.js"></script>
+    <script src="assets/js/vetrangdau.js"></script>
+    <script src="assets/js/giohang.js"></script>
+    <script src="assets/js/auth.js"></script>
 </body>
 </html>

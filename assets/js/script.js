@@ -121,16 +121,6 @@ function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
-function updateCartBadge() {
-    var total = 0;
-    getCart().forEach(function (item) {
-        total += item.quantity;
-    });
-    document.querySelectorAll(".cart-badge").forEach(function (badge) {
-        badge.textContent = total;
-    });
-}
-
 // Thêm sản phẩm vào giỏ, thành công thì trả về true
 function addToCart(card) {
     var id = card.getAttribute("data-id");
@@ -160,7 +150,7 @@ function addToCart(card) {
     }
 
     saveCart(cart);
-    updateCartBadge();
+    capNhatIconGioHang();
     showToast("Đã thêm \"" + name + "\" (" + color + ", " + size + ") vào giỏ hàng!");
     return true;
 }
@@ -362,5 +352,4 @@ document.addEventListener("DOMContentLoaded", function () {
     bindEvents();
     loadWishlist();
     applyFilters();
-    updateCartBadge();
 });

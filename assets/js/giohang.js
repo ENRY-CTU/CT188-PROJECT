@@ -43,19 +43,19 @@ function loadCartFromStorage() {
 
 function saveCartToStorage() {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
-    updateHeaderBadge();
+    capNhatIconGioHang();
 }
 
-function updateHeaderBadge() {
-    const badge = document.querySelector(".cart-badge");
-    if (!badge) return;
+// function updateHeaderBadge() {
+//     const badge = document.querySelector(".cart-badge");
+//     if (!badge) return;
 
-    let totalQty = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-        totalQty += cartItems[i].quantity;
-    }
-    badge.textContent = String(totalQty);
-}
+//     let totalQty = 0;
+//     for (let i = 0; i < cartItems.length; i++) {
+//         totalQty += cartItems[i].quantity;
+//     }
+//     badge.textContent = String(totalQty);
+// }
 
 function createCartRow(item, index) {
     const article = document.createElement("article");
@@ -215,7 +215,7 @@ function renderCart() {
     if (cartItems.length === 0) {
         if (emptyBox) emptyBox.style.display = "block";
         if (layoutBox) layoutBox.style.display = "none";
-        updateHeaderBadge();
+        capNhatIconGioHang();
         renderSummary();
         return;
     }
@@ -229,7 +229,7 @@ function renderCart() {
     });
 
     syncSelectAllCheckbox();
-    updateHeaderBadge();
+    capNhatIconGioHang();
     renderSummary();
 }
 function syncSelectAllCheckbox() {
