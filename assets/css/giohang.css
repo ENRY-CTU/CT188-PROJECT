@@ -22,7 +22,7 @@
     }
 }
 
-/* ----------------------- HEADER -------------------------- */
+/* ----------------------- HEADER --------------------------
 header.main-header {
     background-color: #181818;
     color: #faf7f2;
@@ -245,7 +245,7 @@ header.main-header .btn-register {
 header.main-header .btn-register:hover {
     background-color: #7d5330;
     border-color: #7d5330;
-}
+} */
 
 /* ----------------------- MAIN, BREADCRUMB & TITLE -------------------------- */
 main.cart-page {
