@@ -23,52 +23,52 @@
             </a>
         </div>
 
-        <!-- Nút menu cho màn hình nhỏ -->
-        <input id="menu-toggle" class="menu-checkbox" type="checkbox">
-        <label class="menu-btn" for="menu-toggle" title="Mở menu">
-            <i class="fa-solid fa-bars icon-open"></i>
-            <i class="fa-solid fa-xmark icon-close"></i>
-        </label>
+            <!-- Nút menu cho màn hình nhỏ -->
+            <input id="menu-toggle" class="menu-checkbox" type="checkbox">
+            <label class="menu-btn" for="menu-toggle" title="Mở menu">
+                <i class="fa-solid fa-bars icon-open"></i>
+                <i class="fa-solid fa-xmark icon-close"></i>
+            </label>
 
-        <!-- Menu điều hướng -->
-        <nav class="main-nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
-                <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
-                <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
-                <li class="nav-item"><a class="nav-link active" href="giohang.html">Giỏ Hàng</a></li>
-                <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
-                <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
-            </ul>
-        </nav>
+            <!-- Menu điều hướng -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="trangchu.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sanpham.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="giohang.html">Giỏ Hàng</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html">Đăng Nhập</a></li>
+                    <li class="nav-item mobile-auth"><a class="nav-link" href="dangnhap.html#dangky">Đăng Ký</a></li>
+                </ul>
+            </nav>
 
-        <!-- Tìm kiếm, giỏ hàng, đăng nhập -->
-        <div class="header-actions">
-            <div class="search-box">
-                <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <form id="search-form" class="search-form" action="sanpham.html" method="GET">
-                    <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
-                    <button class="btn-search-submit" type="submit" title="Tìm">
-                        <i class="fa-solid fa-arrow-right"></i>
+            <!-- Tìm kiếm, giỏ hàng, đăng nhập -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <button class="btn-icon btn-search" type="button" title="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                </form>
-            </div>
+                    <form id="search-form" class="search-form" action="sanpham.html" method="GET">
+                        <input id="search-input" class="search-input" type="text" name="q" placeholder="Tìm váy, áo, đầm..." autocomplete="off">
+                        <button class="btn-search-submit" type="submit" title="Tìm">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
 
-            <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge">0</span>
-            </a>
+                <a class="btn-icon btn-cart-link" href="giohang.html" title="Giỏ hàng">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
 
-            <div class="user-buttons">
-                <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
-                <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                <div class="user-buttons">
+                    <a class="btn-user btn-login" href="dangnhap.html">Đăng Nhập</a>
+                    <a class="btn-user btn-register" href="dangnhap.html#dangky">Đăng Ký</a>
+                </div>
             </div>
         </div>
-
-       </div>
     </header>
+
     <main class="cart-page">
         <nav class="breadcrumb" aria-label="breadcrumb">
             <a href="trangchu.html"><i class="fa-solid fa-house"></i> Trang chủ</a>
@@ -81,12 +81,12 @@
 
             <div class="cart-empty" id="cart-empty" style="display: none;">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <p>Giỏ hàng của bạn hiện đang trống.</p>
+                <h2>Giỏ hàng trống</h2>
+                <p>Giỏ hàng của bạn hiện đang trống. Hãy chọn thêm sản phẩm yêu thích nhé.</p>
                 <a href="sanpham.html" class="btn-primary-dark">Tiếp tục mua sắm</a>
             </div>
 
             <div class="cart-layout" id="cart-layout">
-            
                 <div class="cart-items-box">
                     <div class="cart-table-header">
                         <label class="check-all">
@@ -115,7 +115,7 @@
                     <div class="summary-rows">
                         <div class="summary-row">
                             <span>Tạm tính</span>
-                            <b id="subtotal-price">590.000đ</b>
+                            <b id="subtotal-price">0đ</b>
                         </div>
                         <div class="summary-row">
                             <span>Giảm giá</span>
@@ -123,7 +123,7 @@
                         </div>
                         <div class="summary-row">
                             <span>Phí vận chuyển</span>
-                            <b id="shipping-price">30.000đ</b>
+                            <b id="shipping-price">0đ</b>
                         </div>
                         <p class="freeship-note" id="freeship-note">
                             <i class="fa-solid fa-truck-fast"></i> Miễn phí vận chuyển cho đơn từ <b>1.000.000đ</b>
@@ -132,7 +132,7 @@
 
                     <div class="summary-total">
                         <span>Tổng thanh toán</span>
-                        <strong id="final-total">620.000đ</strong>
+                        <strong id="final-total">0đ</strong>
                     </div>
 
                     <button type="button" class="btn-checkout" id="btn-checkout">

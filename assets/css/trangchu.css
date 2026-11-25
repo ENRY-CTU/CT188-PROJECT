@@ -250,7 +250,7 @@ button, select, input { font-family: inherit; }
   }
 }
 .title-danhmuc {
-  margin-top: 21px 0;
+  margin-top: 21px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -497,7 +497,7 @@ button, select, input { font-family: inherit; }
 @media screen and (max-width: 768px){
     .gioithieungan-section {
         flex-direction: column;
-        margin: 14;
+        margin: 14px;
     }
     .gioithieungan-img {
         height: 420px;
