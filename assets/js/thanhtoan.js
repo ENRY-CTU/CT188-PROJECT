@@ -191,7 +191,7 @@ function bindCheckoutForm() {
             return;
         }
         const phoneClean = phone.replace(/\s+/g, "");
-        if (!/^0\d{8,10}$/.test(phoneClean)) {
+        if (!/^0\d{9}$/.test(phoneClean)) {
             if (errorEl) {
                 errorEl.textContent = "Số điện thoại chưa hợp lệ.";
             }
