@@ -199,7 +199,7 @@ function bindCheckoutForm() {
             phoneInput.focus();
             return;
         }
-        if (email && !/^[a-z0-9](\.?[a-z0-9]){0,29}@gmail\.com$/.test(email.toLowerCase())) {
+        if (email && !/^[a-z0-9](\.?[a-z0-9]){5,29}@gmail\.com$/.test(email.toLowerCase())) {
             if (errorEl) {
                 errorEl.textContent = "Email chưa hợp lệ.";
             }

@@ -173,9 +173,29 @@ function taoDongSanPham(sp, viTri) {
         selectSize.appendChild(opt);
     }
 
-    selectSize.addEventListener("change", function () {
-        danhSachGioHang[viTri].size = selectSize.value;
-        luuGioHang();
+        selectSize.addEventListener("change", function(){
+        var sizeMoi = selectSize.value;
+        // Neu trong gio da co dong cung san pham + mau + size moi thi gop lai thanh 1 dong
+        var viTriTrung = -1;
+        danhSachGioHang.forEach(function (item, k) {
+            if (k !== viTri&&
+                item.id === sp.id&&
+                item.color === sp.color&&
+                item.size === sizeMoi){
+                viTriTrung = k;
+            }
+        });
+
+        if (viTriTrung !== -1) {
+            danhSachGioHang[viTriTrung].quantity = Math.min(danhSachGioHang[viTriTrung].quantity + sp.quantity, 20);
+            danhSachGioHang.splice(viTri, 1);
+            luuGioHang();
+            hienThiGioHang();
+        } else {
+            // Không trùng thì chỉ đổi size như cũ
+            danhSachGioHang[viTri].size = sizeMoi;
+            luuGioHang();
+        }
     });
 
     labelSize.appendChild(selectSize);
