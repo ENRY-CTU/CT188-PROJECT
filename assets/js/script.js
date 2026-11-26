@@ -1,3 +1,5 @@
+// Tác giả: Nguyễn Khánh Bình
+
 /* ==========================================================
    MAISON MODE - TRANG DANH SÁCH SẢN PHẨM
    Các thẻ sản phẩm viết sẵn trong sanpham.html (Cách 1).

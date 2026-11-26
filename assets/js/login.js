@@ -1,5 +1,10 @@
+// Tác giả: Chiêm Thiên Vũ
+
+
+//Biến lưu thông báo
 let currentToast = null;
 
+//Hàm hiển thị thông báo thành công
 const showSuccess = (message) => {
     if (currentToast) currentToast.hideToast();
 
@@ -21,6 +26,7 @@ const showSuccess = (message) => {
     }
 };
 
+//Hàm hiển thị thông báo bị lỗi
 const showError = (message) => {
     if (currentToast) currentToast.hideToast();
 
@@ -42,6 +48,7 @@ const showError = (message) => {
     }
 };
 
+//Lấy phần tử trong HTML theo ID
 const loginContainer = document.getElementById("login-form");
 const registerContainer = document.getElementById("register-form");
 
@@ -58,22 +65,26 @@ const confirmPasswordInput = document.getElementById("confirm-password");
 const addressInput = document.getElementById("address");
 const phoneInput = document.getElementById("phone-number");
 
+//Hàm chuyển đăng kí
 const showRegister = () => {
     loginContainer.style.display = "none";
     registerContainer.style.display = "block";
 };
 
+//Hàm chuyển đăng nhập
 const showLogin = () => {
     registerContainer.style.display = "none";
     loginContainer.style.display = "block";
 };
 
+//Đưa hàm showRegister/showLogin vào toàn cục windows
 window.showRegister = showRegister;
 if (window.location.hash === "#dangky") {
     showRegister();
 }
 window.showLogin = showLogin;
 
+//Hàm ẩn hiện mật khẩu
 const eyeIcons = document.querySelectorAll(".eye-icon");
 
 eyeIcons.forEach((eye) => {
@@ -107,6 +118,7 @@ const isValidPhone = (phone) => {
     return phoneRegex.test(phone);
 };
 
+//Hàm xử lý sự kiện đăng kí
 registerForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -177,6 +189,7 @@ registerForm.addEventListener("submit", (event) => {
 
 });
 
+//Hàm xử lý sự kiện đăng nhập
 loginForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -225,6 +238,7 @@ if (savedEmail) {
     rememberCheckbox.checked = true;
 }
 
+//Hàm nhớ email đã đăng nhập
 loginForm.addEventListener("submit", () => {
 
     if (rememberCheckbox.checked) {
