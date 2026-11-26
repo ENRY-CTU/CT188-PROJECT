@@ -2,8 +2,8 @@
 // MAISON MODE - XU LY GIO HANG (VANILLA JS)
 // =========================================================
 
-var STORAGE_KEY = "maison_cart";
-var COUPON_KEY = "maison_coupon"
+var STORAGE_KEY = layKeyGioHang();
+var COUPON_KEY = layKeyGioHang() + "_coupon";
 var MUC_FREESHIP = 1000000;
 var PHI_SHIP = 30000;
 
@@ -78,9 +78,9 @@ function luuGioHang() {
     capNhatIconGioHang();
 }
 
-function luuMaGiamGia(){
+function luuMaGiamGia(ma){
     if (giamGiaHienTai > 0){
-        localStorage.setItem(COUPON_KEY, JSON.stringify({code: ma, value: giamGiaHienTai()}))
+        localStorage.setItem(COUPON_KEY, JSON.stringify({code: ma, value: giamGiaHienTai}))
     }
     else {
         localStorage.removeItem(COUPON_KEY);
@@ -380,7 +380,7 @@ function ganSuKienChung() {
             if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
                 danhSachGioHang = [];
                 giamGiaHienTai = 0;
-                luuMaGiamGia();
+                luuMaGiamGia("");
                 luuGioHang();
                 hienThiGioHang();
             }

@@ -92,7 +92,7 @@ eyeIcons.forEach((eye) => {
     });
 });
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[a-z0-9](\.?[a-z0-9]){5,29}@gmail\.com$/;
 const phoneRegex = /^0[0-9]{9}$/;
 
 const getValue = (input) => {
@@ -126,7 +126,7 @@ registerForm.addEventListener("submit", (event) => {
     }
 
     if (!isValidEmail(email)) {
-        showError("Email không đúng định dạng");
+        showError("Email phải là địa chỉ hợp lệ (ví dụ: nguyenminhanh@gmail.com)");
         return;
     }
 
@@ -209,7 +209,10 @@ loginForm.addEventListener("submit", (event) => {
     sessionStorage.setItem("currentUserName", user.fullname);  
     showSuccess("Đăng nhập thành công!");
 
-    window.location.href = "trangchu.html";
+    //Quay lai vi tri trang truoc khi bam vao dang nhap
+    const anchor = sessionStorage.getItem("trangTruocDN") || "trangchu.html";
+    sessionStorage.removeItem("trangTruocDN");
+    window.location.href = anchor;
 
 });
 

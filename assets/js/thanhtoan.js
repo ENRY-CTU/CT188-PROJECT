@@ -2,8 +2,8 @@
 // MAISON MODE - XU LY THANH TOAN DON HANG (VANILLA JS)
 // =========================================================
 
-const CART_STORAGE_KEY = "maison_cart";
-const COUPON_KEY = "maison_coupon"
+const CART_STORAGE_KEY = layKeyGioHang();
+const COUPON_KEY = layKeyGioHang() + "_coupon";
 const ORDER_STORAGE_KEY = "maison_orders";
 const FREE_SHIP_THRESHOLD = 1000000;
 const SHIPPING_FEE = 30000;
@@ -139,7 +139,17 @@ function saveCompletedOrder(orderData) {
         // Bỏ qua nếu trình duyệt chặn lưu trữ
     }
 }
+function baoLoi(input, idLoi, thongBao) {
+    const oLoi = document.getElementById(idLoi);
+    if (oLoi) oLoi.textContent = thongBao;
+    if (input) input.classList.add("input-error");
+}
 
+function xoaLoi(input, idLoi) {
+    const oLoi = document.getElementById(idLoi);
+    if (oLoi) oLoi.textContent = "";
+    if (input) input.classList.remove("input-error");
+}
 function bindCheckoutForm() {
     const formEl = document.getElementById("checkout-form");
     const errorEl = document.getElementById("form-error");
@@ -147,7 +157,10 @@ function bindCheckoutForm() {
     const codeEl = document.getElementById("success-order-code");
 
     if (!formEl) return;
-
+    const phoneInputEl = document.getElementById("customer-phone");
+    const emailInputEl = document.getElementById("customer-email");
+    if (phoneInputEl) phoneInputEl.addEventListener("input", () => xoaLoi(phoneInputEl, "phone-error"));
+    if (emailInputEl) emailInputEl.addEventListener("input", () => xoaLoi(emailInputEl, "email-error"));
     formEl.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -169,25 +182,35 @@ function bindCheckoutForm() {
         const note = noteInput ? noteInput.value.trim() : "";
         const paymentMethod = paymentRadio ? paymentRadio.value : "cod";
 
+        xoaLoi(phoneInput, "phone-error");
+        xoaLoi(emailInput, "email-error");
         if (!name || !phone || !city || !district || !address) {
             if (errorEl) {
                 errorEl.textContent = "Vui lòng điền đầy đủ các trường có dấu (*).";
             }
             return;
         }
-
         const phoneClean = phone.replace(/\s+/g, "");
         if (!/^0\d{8,10}$/.test(phoneClean)) {
             if (errorEl) {
-                errorEl.textContent = "Số điện thoại chưa hợp lệ (ví dụ: 0912345678).";
+                errorEl.textContent = "Số điện thoại chưa hợp lệ.";
             }
+            baoLoi(phoneInput, "phone-error", "Số điện thoại phải gồm 10 chữ số, bắt đầu bằng 0 (ví dụ: 0912345678).");
+            phoneInput.focus();
             return;
         }
-        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        if (email && !/^[a-z0-9](\.?[a-z0-9]){0,29}@gmail\.com$/.test(email.toLowerCase())) {
             if (errorEl) {
-                rrorEl.textContent = "Email chưa đúng định dạng (ví dụ: minhanh@example.com).";
+                errorEl.textContent = "Email chưa hợp lệ.";
             }
-    }
+            baoLoi(emailInput, "email-error", "Email phải là địa chỉ hợp lệ (ví dụ: nguyenminhanh@gmail.com).");
+            emailInput.focus();
+            return;
+        }
+
+        if (errorEl) {
+            errorEl.textContent = "";
+        }
 
         let subtotal = 0;
         selectedItems.forEach((item) => {

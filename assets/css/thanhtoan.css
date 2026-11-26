@@ -317,7 +317,18 @@ main.checkout-page {
     font-size: 0.8rem;
     color: var(--color-muted);
 }
-
+.field-error{
+    color: var(--color-sale);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+.field-error:empty{
+    display: none;
+}
+.form-group input.input-error{
+    border-color: var(--color-sale);
+    background-color: #fdf2f1;
+}
 .form-error {
     color: var(--color-sale);
     font-size: 0.85rem;

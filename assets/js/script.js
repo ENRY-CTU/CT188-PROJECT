@@ -5,9 +5,9 @@
    giỏ hàng, yêu thích, thông báo, nút về đầu trang.
    ========================================================== */
 
-var CART_KEY = "maison_cart";      // key giỏ hàng trong localStorage
-var WISH_KEY = "mm_wishlist";  // key danh sách yêu thích
-var MAX_QTY = 20;              // số lượng tối đa của 1 dòng trong giỏ
+var CART_KEY = layKeyGioHang();         // key giỏ hàng trong localStorage
+var WISH_KEY = "mm_wishlist";           // key danh sách yêu thích
+var MAX_QTY = 20;                       // số lượng tối đa của 1 dòng trong giỏ
 
 // Lưu lại các lựa chọn lọc hiện tại
 var state = { category: "all", price: "all", sort: "default", keyword: "" };
@@ -120,7 +120,30 @@ function getCart() {
 function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
+// Khi chua dang nhap khong the an mua hang, phai dang nhap
+function daDangNhap(){
+    return sessionStorage.getItem("currentUser") != null;
+}
+function yeuCauDangNhap(){
+    showToast("Vui lòng đăng nhập để mua hàng!", "error");
+    sessionStorage.setItem("trangTruocDN" , "sanpham.html");
 
+    // Tu dong chuyen sang dangnhap neu chua dang nhap - chac khong can
+    // setTimeout(function(){
+    //     window.location.href = "dangnhap.html";
+    // }, 600)
+}
+function kiemTraDangNhap() {
+    var cacNut = document.querySelectorAll(".btn-add, .btn-buy");
+    cacNut.forEach(function(nut){
+        nut.onclick = function(e){
+            if(!daDangNhap()){
+                e.stopPropagation();
+                yeuCauDangNhap();
+            }
+        }
+    })
+}
 // Thêm sản phẩm vào giỏ, thành công thì trả về true
 function addToCart(card) {
     var id = card.getAttribute("data-id");
@@ -331,6 +354,7 @@ function bindEvents() {
 /* ---------- Chạy khi tải trang ---------- */
 
 document.addEventListener("DOMContentLoaded", function () {
+    kiemTraDangNhap();
     var params = new URLSearchParams(window.location.search);
 
     // từ khóa tìm kiếm: sanpham.html?q=...
