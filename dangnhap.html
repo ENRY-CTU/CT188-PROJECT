@@ -1,13 +1,16 @@
+<!-- Tác giả: Chiêm Thiên Vũ -->
+
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập</title>
+    <title>Đăng Nhập | Maison Mode</title>
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
 
         <div class="form-container" id="login-form">
 
@@ -16,7 +19,7 @@
                 <h1>Xin chào!</h1>
             </div>
 
-            <form class="form-box">
+            <form class="form-box" novalidate>
                 <div class="input-group">
                     <input type="email" id="email" class="input-field" placeholder=" " required>
                     <label for="email" class="floating-label">Địa chỉ Email</label>
@@ -69,7 +72,7 @@
                 <h1>Tạo tài khoản!</h1>
             </div>
 
-            <form class="form-box">
+            <form class="form-box" novalidate>
 
                 <div class="input-group">
                     <input type="text" id="fullname" class="input-field" placeholder=" " required>
@@ -126,12 +129,10 @@
                     <a href="#" class="form-link" onclick="showLogin(); return false;">ĐĂNG NHẬP</a>
                 </p>
             </div>
-
         </div>
-
-    </div>
+    </main>
+    <script src="assets/js/login.js"></script>
 </body>
 
-<script src="/assets/js/login.js"></script>
 
 </html>

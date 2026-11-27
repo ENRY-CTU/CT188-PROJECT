@@ -2,7 +2,8 @@
 // MAISON MODE - XU LY THANH TOAN DON HANG (VANILLA JS)
 // =========================================================
 
-const CART_STORAGE_KEY = "maison_cart";
+const CART_STORAGE_KEY = layKeyGioHang();
+const COUPON_KEY = layKeyGioHang() + "_coupon";
 const ORDER_STORAGE_KEY = "maison_orders";
 const FREE_SHIP_THRESHOLD = 1000000;
 const SHIPPING_FEE = 30000;
@@ -27,15 +28,19 @@ function loadSelectedCartItems() {
     }
 }
 
-function updateHeaderBadge() {
-    const badge = document.querySelector(".cart-badge");
-    if (!badge) return;
-
-    let totalQty = 0;
-    for (let i = 0; i < allCartItems.length; i++) {
-        totalQty += Math.max(1, Number(allCartItems[i].quantity) || 1);
+function calcDiscount(subtotal) {
+    let coupon = null;
+    try {
+        coupon = JSON.parse(localStorage.getItem(COUPON_KEY));
+    } catch (err) {
+        coupon = null;
     }
-    badge.textContent = String(totalQty);
+    if (!coupon || !(coupon.value > 0) || subtotal <= 0) return 0;
+    if (coupon.value < 1) return Math.round(subtotal * coupon.value);
+    return Math.min(coupon.value, subtotal);
+}
+function calcShipping(afterDiscount) {
+    return afterDiscount > 0 && afterDiscount < FREE_SHIP_THRESHOLD ? SHIPPING_FEE : 0;
 }
 
 function createOrderItemRow(item) {
@@ -87,7 +92,7 @@ function renderCheckoutSummary() {
     const shippingEl = document.getElementById("checkout-shipping");
     const totalEl = document.getElementById("checkout-total");
 
-    updateHeaderBadge();
+    capNhatIconGioHang();
 
     if (selectedItems.length === 0) {
         if (emptyBox) emptyBox.style.display = "block";
@@ -111,10 +116,10 @@ function renderCheckoutSummary() {
             listEl.appendChild(createOrderItemRow(item));
         });
 
-        const discount = 0;
-        const shippingFee = subtotal >= FREE_SHIP_THRESHOLD ? 0 : SHIPPING_FEE;
-        const finalTotal = Math.max(0, subtotal - discount) + shippingFee;
-
+        const discount = calcDiscount(subtotal);
+        const afterDiscount = subtotal - discount;
+        const shippingFee = calcShipping(afterDiscount);
+        const finalTotal = afterDiscount + shippingFee;
         if (countEl) countEl.textContent = String(totalQty);
         if (subtotalEl) subtotalEl.textContent = formatVND(subtotal);
         if (discountEl) discountEl.textContent = "-" + formatVND(discount);
@@ -134,7 +139,17 @@ function saveCompletedOrder(orderData) {
         // Bỏ qua nếu trình duyệt chặn lưu trữ
     }
 }
+function baoLoi(input, idLoi, thongBao) {
+    const oLoi = document.getElementById(idLoi);
+    if (oLoi) oLoi.textContent = thongBao;
+    if (input) input.classList.add("input-error");
+}
 
+function xoaLoi(input, idLoi) {
+    const oLoi = document.getElementById(idLoi);
+    if (oLoi) oLoi.textContent = "";
+    if (input) input.classList.remove("input-error");
+}
 function bindCheckoutForm() {
     const formEl = document.getElementById("checkout-form");
     const errorEl = document.getElementById("form-error");
@@ -142,7 +157,10 @@ function bindCheckoutForm() {
     const codeEl = document.getElementById("success-order-code");
 
     if (!formEl) return;
-
+    const phoneInputEl = document.getElementById("customer-phone");
+    const emailInputEl = document.getElementById("customer-email");
+    if (phoneInputEl) phoneInputEl.addEventListener("input", () => xoaLoi(phoneInputEl, "phone-error"));
+    if (emailInputEl) emailInputEl.addEventListener("input", () => xoaLoi(emailInputEl, "email-error"));
     formEl.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -164,18 +182,29 @@ function bindCheckoutForm() {
         const note = noteInput ? noteInput.value.trim() : "";
         const paymentMethod = paymentRadio ? paymentRadio.value : "cod";
 
+        xoaLoi(phoneInput, "phone-error");
+        xoaLoi(emailInput, "email-error");
         if (!name || !phone || !city || !district || !address) {
             if (errorEl) {
                 errorEl.textContent = "Vui lòng điền đầy đủ các trường có dấu (*).";
             }
             return;
         }
-
         const phoneClean = phone.replace(/\s+/g, "");
-        if (!/^0\d{8,10}$/.test(phoneClean)) {
+        if (!/^0\d{9}$/.test(phoneClean)) {
             if (errorEl) {
-                errorEl.textContent = "Số điện thoại chưa hợp lệ (ví dụ: 0912345678).";
+                errorEl.textContent = "Số điện thoại chưa hợp lệ.";
             }
+            baoLoi(phoneInput, "phone-error", "Số điện thoại phải gồm 10 chữ số, bắt đầu bằng 0 (ví dụ: 0912345678).");
+            phoneInput.focus();
+            return;
+        }
+        if (email && !/^[a-z0-9](\.?[a-z0-9]){5,29}@gmail\.com$/.test(email.toLowerCase())) {
+            if (errorEl) {
+                errorEl.textContent = "Email chưa hợp lệ.";
+            }
+            baoLoi(emailInput, "email-error", "Email phải là địa chỉ hợp lệ (ví dụ: nguyenminhanh@gmail.com).");
+            emailInput.focus();
             return;
         }
 
@@ -188,8 +217,9 @@ function bindCheckoutForm() {
             const qty = Math.max(1, Number(item.quantity) || 1);
             subtotal += (Number(item.price) || 0) * qty;
         });
-        const shippingFee = subtotal >= FREE_SHIP_THRESHOLD ? 0 : SHIPPING_FEE;
-        const totalAmount = subtotal + shippingFee;
+        const discount = calcDiscount(subtotal);
+        const shippingFee = calcShipping(subtotal - discount);
+        const totalAmount = subtotal - discount + shippingFee;
         const orderCode = "MM-" + String(Date.now()).slice(-6);
 
         saveCompletedOrder({
@@ -198,12 +228,14 @@ function bindCheckoutForm() {
             customer: { name, phone: phoneClean, email, city, district, address, note },
             paymentMethod,
             items: selectedItems,
+            discount,
+            shippingFee,
             totalAmount
         });
-
+        localStorage.removeItem(COUPON_KEY);
         allCartItems = allCartItems.filter((item) => item.checked === false);
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(allCartItems));
-        updateHeaderBadge();
+        capNhatIconGioHang();
 
         formEl.style.display = "none";
         if (codeEl) codeEl.textContent = orderCode;

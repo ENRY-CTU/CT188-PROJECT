@@ -1,5 +1,10 @@
+// Tác giả: Chiêm Thiên Vũ
+
+
+//Biến lưu thông báo
 let currentToast = null;
 
+//Hàm hiển thị thông báo thành công
 const showSuccess = (message) => {
     if (currentToast) currentToast.hideToast();
 
@@ -21,6 +26,7 @@ const showSuccess = (message) => {
     }
 };
 
+//Hàm hiển thị thông báo bị lỗi
 const showError = (message) => {
     if (currentToast) currentToast.hideToast();
 
@@ -42,6 +48,7 @@ const showError = (message) => {
     }
 };
 
+//Lấy phần tử trong HTML theo ID
 const loginContainer = document.getElementById("login-form");
 const registerContainer = document.getElementById("register-form");
 
@@ -58,22 +65,26 @@ const confirmPasswordInput = document.getElementById("confirm-password");
 const addressInput = document.getElementById("address");
 const phoneInput = document.getElementById("phone-number");
 
+//Hàm chuyển đăng kí
 const showRegister = () => {
     loginContainer.style.display = "none";
     registerContainer.style.display = "block";
 };
 
+//Hàm chuyển đăng nhập
 const showLogin = () => {
     registerContainer.style.display = "none";
     loginContainer.style.display = "block";
 };
 
+//Đưa hàm showRegister/showLogin vào toàn cục windows
 window.showRegister = showRegister;
 if (window.location.hash === "#dangky") {
     showRegister();
 }
 window.showLogin = showLogin;
 
+//Hàm ẩn hiện mật khẩu
 const eyeIcons = document.querySelectorAll(".eye-icon");
 
 eyeIcons.forEach((eye) => {
@@ -92,7 +103,7 @@ eyeIcons.forEach((eye) => {
     });
 });
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[a-z0-9](\.?[a-z0-9]){5,29}@gmail\.com$/;
 const phoneRegex = /^0[0-9]{9}$/;
 
 const getValue = (input) => {
@@ -107,6 +118,7 @@ const isValidPhone = (phone) => {
     return phoneRegex.test(phone);
 };
 
+//Hàm xử lý sự kiện đăng kí
 registerForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -126,7 +138,7 @@ registerForm.addEventListener("submit", (event) => {
     }
 
     if (!isValidEmail(email)) {
-        showError("Email không đúng định dạng");
+        showError("Email phải là địa chỉ hợp lệ (ví dụ: nguyenminhanh@gmail.com)");
         return;
     }
 
@@ -177,6 +189,7 @@ registerForm.addEventListener("submit", (event) => {
 
 });
 
+//Hàm xử lý sự kiện đăng nhập
 loginForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -209,7 +222,10 @@ loginForm.addEventListener("submit", (event) => {
     sessionStorage.setItem("currentUserName", user.fullname);  
     showSuccess("Đăng nhập thành công!");
 
-    window.location.href = "trangchu.html";
+    //Quay lai vi tri trang truoc khi bam vao dang nhap
+    const anchor = sessionStorage.getItem("trangTruocDN") || "trangchu.html";
+    sessionStorage.removeItem("trangTruocDN");
+    window.location.href = anchor;
 
 });
 
@@ -222,6 +238,7 @@ if (savedEmail) {
     rememberCheckbox.checked = true;
 }
 
+//Hàm nhớ email đã đăng nhập
 loginForm.addEventListener("submit", () => {
 
     if (rememberCheckbox.checked) {

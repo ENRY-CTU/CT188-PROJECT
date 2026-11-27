@@ -1,5 +1,5 @@
 var user = JSON.parse(sessionStorage.getItem("currentUser"));
- 
+
 if (user != null) {
 
     var userButtons = document.querySelector(".user-buttons");

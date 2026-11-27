@@ -1,8 +1,11 @@
+//Tác giả: Lê Khánh Trường
+
 // =========================================================
 // MAISON MODE - XU LY GIO HANG (VANILLA JS)
 // =========================================================
 
-var STORAGE_KEY = "maison_cart";
+var STORAGE_KEY = layKeyGioHang();
+var COUPON_KEY = layKeyGioHang() + "_coupon";
 var MUC_FREESHIP = 1000000;
 var PHI_SHIP = 30000;
 
@@ -72,22 +75,39 @@ function layDuLieuGioHang() {
     }
 }
 
-// Luu lai vao localStorage va cap nhat so tren icon tui xach
 function luuGioHang() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(danhSachGioHang));
-    capNhatSoLuongHeader();
+    capNhatIconGioHang();
 }
 
-function capNhatSoLuongHeader() {
-    var badge = document.querySelector(".cart-badge");
-    if (!badge) return;
-
-    var tongSoLuong = 0;
-    for (var i = 0; i < danhSachGioHang.length; i++) {
-        tongSoLuong += danhSachGioHang[i].quantity;
+function luuMaGiamGia(ma){
+    if (giamGiaHienTai > 0){
+        localStorage.setItem(COUPON_KEY, JSON.stringify({code: ma, value: giamGiaHienTai}))
     }
-    badge.textContent = tongSoLuong;
+    else {
+        localStorage.removeItem(COUPON_KEY);
+    }
 }
+function layMaGiamGia(){
+    var duLieu = JSON.parse(localStorage.getItem(COUPON_KEY));
+    if (duLieu && duLieu.value > 0){
+        giamGiaHienTai = duLieu.value;
+        var oNhapMa = document.getElementById("coupon-input");
+        if(oNhapMa){
+            oNhapMa.value = duLieu.code;
+        }
+    }
+}
+// function updateHeaderBadge() {
+//     const badge = document.querySelector(".cart-badge");
+//     if (!badge) return;
+
+//     let totalQty = 0;
+//     for (let i = 0; i < cartItems.length; i++) {
+//         totalQty += cartItems[i].quantity;
+//     }
+//     badge.textContent = String(totalQty);
+// }
 
 // Tao 1 dong san pham trong gio hang
 function taoDongSanPham(sp, viTri) {
@@ -153,9 +173,29 @@ function taoDongSanPham(sp, viTri) {
         selectSize.appendChild(opt);
     }
 
-    selectSize.addEventListener("change", function () {
-        danhSachGioHang[viTri].size = selectSize.value;
-        luuGioHang();
+        selectSize.addEventListener("change", function(){
+        var sizeMoi = selectSize.value;
+        // Neu trong gio da co dong cung san pham + mau + size moi thi gop lai thanh 1 dong
+        var viTriTrung = -1;
+        danhSachGioHang.forEach(function (item, k) {
+            if (k !== viTri&&
+                item.id === sp.id&&
+                item.color === sp.color&&
+                item.size === sizeMoi){
+                viTriTrung = k;
+            }
+        });
+
+        if (viTriTrung !== -1) {
+            danhSachGioHang[viTriTrung].quantity = Math.min(danhSachGioHang[viTriTrung].quantity + sp.quantity, 20);
+            danhSachGioHang.splice(viTri, 1);
+            luuGioHang();
+            hienThiGioHang();
+        } else {
+            // Không trùng thì chỉ đổi size như cũ
+            danhSachGioHang[viTri].size = sizeMoi;
+            luuGioHang();
+        }
     });
 
     labelSize.appendChild(selectSize);
@@ -263,7 +303,8 @@ function hienThiGioHang() {
     if (danhSachGioHang.length === 0) {
         if (khungTrong) khungTrong.style.display = "block";
         if (khungChinh) khungChinh.style.display = "none";
-        capNhatSoLuongHeader();
+        kiemTraChonTatCa();
+        capNhatIconGioHang();
         tinhTongTien();
         return;
     }
@@ -277,7 +318,7 @@ function hienThiGioHang() {
     }
 
     kiemTraChonTatCa();
-    capNhatSoLuongHeader();
+    capNhatIconGioHang();
     tinhTongTien();
 }
 
@@ -361,6 +402,7 @@ function ganSuKienChung() {
             if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
                 danhSachGioHang = [];
                 giamGiaHienTai = 0;
+                luuMaGiamGia("");
                 luuGioHang();
                 hienThiGioHang();
             }
@@ -378,14 +420,17 @@ function ganSuKienChung() {
             }
             if (ma === "MAISON10") {
                 giamGiaHienTai = 0.1;
+                luuMaGiamGia(ma);
                 tinhTongTien();
                 alert("Áp dụng thành công mã giảm 10%.");
             } else if (ma === "SALE50K") {
                 giamGiaHienTai = 50000;
+                luuMaGiamGia(ma);
                 tinhTongTien();
                 alert("Áp dụng thành công mã giảm 50.000đ.");
             } else {
                 giamGiaHienTai = 0;
+                luuMaGiamGia(ma);
                 tinhTongTien();
                 alert("Mã giảm giá không hợp lệ (thử MAISON10 hoặc SALE50K).");
             }
@@ -413,6 +458,7 @@ function ganSuKienChung() {
 
 document.addEventListener("DOMContentLoaded", function () {
     layDuLieuGioHang();
+    layMaGiamGia();
     ganSuKienChung();
     hienThiGioHang();
 });
